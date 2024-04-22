@@ -24,9 +24,14 @@ public final class Translation
 			JSONParser parser = new JSONParser(); 
 			JSONObject object = (JSONObject)(parser.parse(reader));
 			
-            JSONObject o = (JSONObject)(object.get("PROG_NAME"));
-            System.out.println(o.get(lang));
-            
+			for(Object key : object.keySet())
+			{
+				String value = (String)((JSONObject)object.get(key)).get(lang);
+				
+				translation.put((String)key, value);
+			}
+			
+            System.out.println(translation);
             
 	    } 
 	 	catch (IOException | ParseException e) 
@@ -50,6 +55,7 @@ public final class Translation
 				break;
 			
 			default:
+				// English as standart language so far
 				readFile("ENG");
 				break;
 		}
