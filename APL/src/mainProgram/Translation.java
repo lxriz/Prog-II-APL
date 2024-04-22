@@ -10,6 +10,8 @@ import org.json.simple.parser.ParseException;
 
 public final class Translation 
 {
+	
+	
 	private static HashMap<String, String> translation = new HashMap<>();
 	
 	// ACHTUNG NOCH NICHT DYNAMISCH !!!
@@ -31,8 +33,8 @@ public final class Translation
 				translation.put((String)key, value);
 			}
 			
-            System.out.println(translation);
-            
+			reader.close();
+			            
 	    } 
 	 	catch (IOException | ParseException e) 
 	 	{
@@ -55,7 +57,6 @@ public final class Translation
 				break;
 			
 			default:
-				// English as standart language so far
 				readFile("ENG");
 				break;
 		}
@@ -70,6 +71,17 @@ public final class Translation
 		}
 		
 		return "_ERROR_";
+	}
+	
+	
+	public Translation(String lang)
+	{
+		selectLanguage(lang);
+	}
+	
+	public Translation()
+	{
+		selectLanguage("");
 	}
 	
 }

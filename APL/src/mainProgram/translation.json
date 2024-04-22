@@ -9,5 +9,31 @@
   {
     "DE": "Zeitung",
     "ENG": "Newspaper"
+  },
+  
+  "PRODUCT_NAME_CIGARETTES":
+  {
+    "DE": "Zigaretten",
+    "ENG": "Cigarettes"
+  },
+  
+  "PRODUCT_NAME_FRIES":
+  {
+    "DE": "Pommes",
+    "ENG": "Fries"
+  }, 
+  
+  "PRODUCT_NAME_LEMONADE":
+  {
+    "DE": "Limonade",
+    "ENG": "Lemonade"
+  },
+  
+  "PRODUCT_NAME_ICE_CREAM":
+  {
+    "DE": "Eiscreme",
+    "ENG": "Ice cream"
   }
+  
+  
 }

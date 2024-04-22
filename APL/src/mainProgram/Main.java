@@ -29,9 +29,10 @@ public class Main
 	//
 	public static void main(String[] args)
 	{
-		translation.selectLanguage("DE");
 		
+		Start();
 		
+		System.out.println(translation.getText("PRODUCT_NAME_NEWSPAPER"));
 		
 	}
 	

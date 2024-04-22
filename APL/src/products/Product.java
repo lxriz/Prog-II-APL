@@ -6,21 +6,13 @@ public abstract class Product
 	// expiresDays > 0, good to sell
 	// expiresDays == 0, product has to be thrown away
 	// expiresDays < 0, the product never expires
-	
 	int expiresDays; 
 	
 		
 	// Saves the size of the product for storage
-	// Simplified volume
+	// The value is simplified with no real measurement
 	int size; 
 	
-	
-	// Name of product
-	String productName;
-	
-	
-	// Short Description of product
-	String prodcutDescription;
 	
 	
 	// WETTER VARIABLEN
