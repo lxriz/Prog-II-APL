@@ -61,16 +61,35 @@ public class Main
 		{
 			PrintChangeLanguage();
 			
+			int input = -1;
 			try
 			{
-				int input = scan.nextInt();
+				input = scan.nextInt();
 			}
 			catch(Exception e)
 			{
-				
+				System.out.println(translation.getText("INVALID_INPUT"));
 			}
 			
-			running = false;
+			PrintClearConsole();
+			
+			String[] languages = translation.getSuppoertedLanguages();
+			
+			if(input < 0 || input > languages.length)
+			{
+				System.out.println(translation.getText("INVALID_INPUT"));
+				continue;
+			}
+				
+			if(input == 0)
+			{
+				running = false;
+			}
+			else
+			{
+				translation.selectLanguage(languages[input-1]);
+			}
+			
 		}
 		
 	}
@@ -111,7 +130,7 @@ public class Main
 	public static void PrintMainMenu()
 	{
 		PrintLine();
-		System.out.println(translation.getText("PROG_NAME"));
+		System.out.println(translation.getText("MAIN_MENU"));
 		PrintLine();
 		
 		System.out.println("1| " + translation.getText("MAIN_MENU_START"));
@@ -129,7 +148,7 @@ public class Main
 		{
 			PrintMainMenu();
 			
-			int input = 0;
+			int input = -1;
 			try
 			{
 				input = scan.nextInt();
@@ -167,15 +186,54 @@ public class Main
 		}
 	}
 	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	// StartScreen
+	
+	public static void PrintStartScreen()
+	{
+		PrintLine();
+		for(int i = 0; i < 20; i++)
+		{
+			System.out.print("*");
+		}
+		System.out.println();
+		System.out.println();
+		
+		System.out.println(">   " + translation.getText("PROG_NAME") + "  <");
+		
+		System.out.println();
+		System.out.println();
+
+		System.out.println(translation.getText("START_SCREEN"));
+		
+		for(int i = 0; i < 20; i++)
+		{
+			System.out.print("*");
+		}
+		System.out.println();
+		
+		PrintLine();
+		
+		
+		try
+		{
+			Thread.sleep(2100);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+	}
+	
 
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Main Funktion
 	public static void main(String[] args)
 	{
-		boolean running = true;
+		PrintStartScreen();
 		PrintClearConsole();
-		
 		MainMenu();
 	}
 	

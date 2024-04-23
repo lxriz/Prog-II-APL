@@ -35,6 +35,17 @@
     "ENG": "Ice cream"
   },
   
+  "START_SCREEN":
+  {
+  	"DE": "von Loris Kulke",
+  	"ENG": "by Loris Kulke"
+  },
+  
+  "MAIN_MENU":
+  {
+  	"DE": "Hauptmenü",
+  	"ENG": "Main menu"
+  },
   
   "MAIN_MENU_CHANGE_LANGUAGE":
   {
@@ -50,8 +61,8 @@
   
   "MAIN_MENU_START":
   {
-  	"DE": "Neues Spiel starten",
-	"ENG": "Start new game"
+  	"DE": "Neues Spiel",
+	"ENG": "New game"
   },
   
   "MAIN_MENU_SEE_SCORE":
