@@ -105,6 +105,48 @@
   {
   	"DE": "Wie heißt du?",
 	"ENG": "What's your name?"
+  },
+  
+  "DAY_1":
+  {
+  	"DE": "Montag",
+	"ENG": "Monday"
+  },
+  
+  "DAY_2":
+  {
+  	"DE": "Dienstag",
+	"ENG": "Tuesday"
+  },
+  
+  "DAY_3":
+  {
+  	"DE": "Mittwoch",
+	"ENG": "Wensday"
+  },
+  
+  "DAY_4":
+  {
+  	"DE": "Donnerstag",
+	"ENG": "Thursday"
+  },
+  
+  "DAY_5":
+  {
+  	"DE": "Freitag",
+	"ENG": "Friday"
+  },
+  
+  "DAY_6":
+  {
+  	"DE": "Samstag",
+	"ENG": "Saturday"
+  },
+  
+  "DAY_7":
+  {
+  	"DE": "Sonntag",
+	"ENG": "Sunday"
   }
   
 }

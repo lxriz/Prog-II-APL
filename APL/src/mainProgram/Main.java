@@ -2,6 +2,7 @@ package mainProgram;
 
 import java.util.Scanner;
 import simulation.Kiosk;
+import simulation.Simulation;
 
 
 public class Main 
@@ -166,10 +167,46 @@ public class Main
 		
 		if(!input.isEmpty())
 		{
+			PrintClearConsole();
 			return input;
 		}
 		
+		PrintClearConsole();
 		return EnterUsernameMenu();
+	}
+	
+	
+	private static void PrintSimulationHeader(String username, int currentDay, int maxDays)
+	{
+		String weekday = "";
+		
+		switch(currentDay % 7)
+		{
+			case 0:
+				weekday = "DAY_7";
+				break;
+			case 1:
+				weekday = "DAY_1";
+				break;
+			case 2:
+				weekday = "DAY_2";
+				break;
+			case 3:
+				weekday = "DAY_3";
+				break;
+			case 4:
+				weekday = "DAY_4";
+				break;
+			case 5:
+				weekday = "DAY_5";
+				break;
+			case 6:
+				weekday = "DAY_6";
+				break;
+		}
+		
+		System.out.println(username + "\t\t" + translation.getText(weekday) + "\t\t"+ currentDay + "/" + maxDays);
+		PrintLine();
 	}
 	
 	
@@ -178,10 +215,20 @@ public class Main
 		PrintClearConsole();
 		
 		
-		Kiosk kiosk = new Kiosk(EnterUsernameMenu());
+		Simulation simulation = new Simulation(new Kiosk(EnterUsernameMenu()));
+		
+		PrintSimulationHeader(simulation.getKioskUsername(), simulation.getCurrentDay(), simulation.getMaxDays());
 		
 		
-		
+		// TEMP !!!
+		try
+		{
+			Thread.sleep(3000);
+		}
+		catch(Exception e)
+		{
+			
+		}
 		
 	}
 		
