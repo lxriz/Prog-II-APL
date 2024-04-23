@@ -17,22 +17,26 @@ public class Main
 		System.out.println();
 	}
 	
-	//
-	public static void Start()
+	
+	public static void PrintMainMenu()
 	{
-		Line();
 		System.out.println(translation.getText("PROG_NAME"));
 		Line();
+		
+		System.out.println("1: " + translation.getText("MAIN_MENU_CHANGE_LANGUAGE"));
+		System.out.println("2: " + translation.getText("MAIN_MENU_EXIT"));
+	
 	}
+	
+	
+	
 	
 	
 	//
 	public static void main(String[] args)
 	{
+		PrintMainMenu();
 		
-		Start();
-		
-		System.out.println(translation.getText("PRODUCT_NAME_NEWSPAPER"));
 		
 	}
 	

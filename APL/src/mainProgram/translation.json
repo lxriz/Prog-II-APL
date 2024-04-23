@@ -33,7 +33,19 @@
   {
     "DE": "Eiscreme",
     "ENG": "Ice cream"
-  }
+  },
   
+  
+  "MAIN_MENU_CHANGE_LANGUAGE":
+  {
+  	"DE": "Sprache wechseln",
+	"ENG": "Change language"
+  },
+  
+  "MAIN_MENU_EXIT":
+  {
+  	"DE": "Verlassen",
+	"ENG": "Exit"
+  }
   
 }
