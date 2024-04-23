@@ -58,8 +58,31 @@
   {
   	"DE": "Bestenliste",
 	"ENG": "Highscores"
-  }
+  },
   
+  "INVALID_INPUT":
+  {
+  	"DE": "Ungültige Eingabe",
+	"ENG": "Invalid input"
+  },
+  
+  "HIGHSCORES_MENU":
+  {
+  	"DE": "Bestenliste",
+	"ENG": "Highscores"
+  },
+  
+  "LANGUAGE_MENU":
+  {
+  	"DE": "Sprache ändern",
+	"ENG": "Change language"
+  },
+  
+  "LANGUAGE_MENU_EXIT":
+  {
+  	"DE": "Zurück",
+	"ENG": "Back"
+  }
 
   
 }

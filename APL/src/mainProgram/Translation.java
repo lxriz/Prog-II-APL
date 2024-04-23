@@ -10,12 +10,15 @@ import org.json.simple.parser.ParseException;
 
 public final class Translation 
 {
-	
-	
 	private static HashMap<String, String> translation = new HashMap<>();
+	private static String[] supportedLanguages = {"DE", "ENG"};
+	
+	private static String defaultLanguage = "ENG";
+	
 	
 	// ACHTUNG NOCH NICHT DYNAMISCH !!!
 	private static final String path = "/Users/loris/git/repository/APLII/APL/src/mainProgram/translation.json";
+	
 	
 	
 	private void readFile(String lang)
@@ -44,7 +47,7 @@ public final class Translation
 	}
 	
 	
-	public void selectLanguage(String lang)
+	public boolean selectLanguage(String lang)
 	{
 		switch(lang)
 		{
@@ -57,9 +60,16 @@ public final class Translation
 				break;
 			
 			default:
-				readFile("ENG");
-				break;
+				return false;
 		}
+		
+		return true;
+	}
+	
+	
+	public String[] getSuppoertedLanguages()
+	{
+		return supportedLanguages;
 	}
 	
 	
@@ -70,7 +80,7 @@ public final class Translation
 			return translation.get(input);
 		}
 		
-		return "_ERROR_";
+		return "* MISSING WORD *";
 	}
 	
 	
@@ -79,9 +89,10 @@ public final class Translation
 		selectLanguage(lang);
 	}
 	
+	
 	public Translation()
 	{
-		selectLanguage("");
+		selectLanguage(this.defaultLanguage);
 	}
 	
 }
