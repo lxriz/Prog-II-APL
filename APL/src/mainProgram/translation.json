@@ -46,6 +46,20 @@
   {
   	"DE": "Verlassen",
 	"ENG": "Exit"
+  },
+  
+  "MAIN_MENU_START":
+  {
+  	"DE": "Neues Spiel starten",
+	"ENG": "Start new game"
+  },
+  
+  "MAIN_MENU_SEE_SCORE":
+  {
+  	"DE": "Bestenliste",
+	"ENG": "Highscores"
   }
+  
+
   
 }
