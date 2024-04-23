@@ -80,7 +80,7 @@ public final class Translation
 			return translation.get(input);
 		}
 		
-		return "* MISSING WORD *";
+		return "!MISSING WORD!";
 	}
 	
 	

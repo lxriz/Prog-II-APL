@@ -77,6 +77,12 @@
 	"ENG": "Invalid input"
   },
   
+  "INPUT":
+  {
+  	"DE": "Eingabe",
+	"ENG": "Input"
+  },
+  
   "HIGHSCORES_MENU":
   {
   	"DE": "Bestenliste",
@@ -93,7 +99,12 @@
   {
   	"DE": "Zurück",
 	"ENG": "Back"
+  },
+  
+  "SIMULATION_ENTER_NAME_MENU":
+  {
+  	"DE": "Wie heißt du?",
+	"ENG": "What's your name?"
   }
-
   
 }

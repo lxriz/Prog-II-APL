@@ -1,25 +1,35 @@
 package mainProgram;
 
 import java.util.Scanner;
+import simulation.Kiosk;
 
 
 public class Main 
 {
-	public static Translation translation = new Translation();
+	private static Translation translation = new Translation();
 	
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Utility methods
-	public static void PrintLine()
+	
+	
+	private static void PrintLine()
 	{
-		for(int i = 0; i < 20; i++)
+		for(int i = 0; i < 45; i++)
 		{
 			System.out.print("-");
 		}
 		System.out.println();
 	}
 	
-	public static void PrintClearConsole()
+	private static void PrintInput()
+	{
+		PrintLine();
+		System.out.println(translation.getText("INPUT"));
+		System.out.print("> ");
+	}
+	
+	private static void PrintClearConsole()
 	{
 		for(int i = 0; i < 25; i++)
 		{
@@ -27,10 +37,12 @@ public class Main
 		}
 	}
 	
+	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Change Language 
 	
-	public static void PrintChangeLanguage()
+	
+	private static void PrintChangeLanguage()
 	{
 		PrintLine();
 		System.out.println(translation.getText("LANGUAGE_MENU"));
@@ -44,12 +56,12 @@ public class Main
 		}
 		
 		System.out.println();
-		System.out.println("0|" + translation.getText("LANGUAGE_MENU_EXIT"));
+		System.out.println("0| " + translation.getText("LANGUAGE_MENU_EXIT"));
 
 	}
 	
 	
-	public static void ChangeLanguageMenu()
+	private static void ChangeLanguageMenu()
 	{
 		boolean running = true;
 		
@@ -64,6 +76,7 @@ public class Main
 			int input = -1;
 			try
 			{
+				PrintInput();
 				input = scan.nextInt();
 			}
 			catch(Exception e)
@@ -98,7 +111,8 @@ public class Main
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// High Score
 	
-	public static void PrintHighscoresMenu()
+	
+	private static void PrintHighscoresMenu()
 	{
 		PrintClearConsole();
 		PrintLine();
@@ -113,21 +127,71 @@ public class Main
 		}
 	}
 	
-	public static void HighscoresMenu()
+	
+	private static void HighscoresMenu()
 	{
 		Scanner scan = new Scanner(System.in);
 		
-
 		PrintHighscoresMenu();
 		scan.nextLine();
 	}
 	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	// Simulation
 	
+	
+	private static void PrintEnterUsernameMenu()
+	{
+		System.out.println(translation.getText("SIMULATION_ENTER_NAME_MENU"));
+		PrintInput();
+	}
+	
+	
+	private static String EnterUsernameMenu()
+	{
+		Scanner scan = new Scanner(System.in);
+
+		PrintClearConsole();
+		String input = "";
+		
+		try
+		{	
+			PrintEnterUsernameMenu();
+			 input = scan.nextLine();
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		if(!input.isEmpty())
+		{
+			return input;
+		}
+		
+		return EnterUsernameMenu();
+	}
+	
+	
+	private static void Simulation()
+	{
+		PrintClearConsole();
+		
+		
+		Kiosk kiosk = new Kiosk(EnterUsernameMenu());
+		
+		
+		
+		
+	}
+		
 	
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Main Menu
-	public static void PrintMainMenu()
+	
+	
+	private static void PrintMainMenu()
 	{
 		PrintLine();
 		System.out.println(translation.getText("MAIN_MENU"));
@@ -139,7 +203,8 @@ public class Main
 		System.out.println("4| " + translation.getText("MAIN_MENU_EXIT"));
 	}
 	
-	public static void MainMenu()
+	
+	private static void MainMenu()
 	{
 		boolean running = true;
 		
@@ -150,7 +215,8 @@ public class Main
 			
 			int input = -1;
 			try
-			{
+			{	
+				PrintInput();
 				input = scan.nextInt();
 			}
 			catch(Exception e)
@@ -165,7 +231,8 @@ public class Main
 			switch(input)
 			{
 				case 1:
-					
+					Simulation();
+					PrintClearConsole();
 					break;
 				case 2:
 					ChangeLanguageMenu();
@@ -189,7 +256,10 @@ public class Main
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// StartScreen
 	
-	public static void PrintStartScreen()
+	
+	// Prints a short screen when the game starts
+	//
+	private static void PrintStartScreen()
 	{
 		PrintLine();
 		for(int i = 0; i < 20; i++)
@@ -230,14 +300,12 @@ public class Main
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Main Funktion
+	
+	
 	public static void main(String[] args)
 	{
 		PrintStartScreen();
 		PrintClearConsole();
 		MainMenu();
 	}
-	
-	
-	
-	
 }
