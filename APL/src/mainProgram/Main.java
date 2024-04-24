@@ -265,7 +265,6 @@ public class Main
 	
 	private static void PrintSimulationAnimation(int weather)
 	{
-		// HIER KANN MAN AM ENDE NOCH DAS WETTER IN DER ANIMATION ANZEIGEN LASSEN
 		switch(weather)
 		{
 			case 0:
@@ -300,7 +299,7 @@ public class Main
 	}
 	
 	
-	private static void PrintSimulationHeader(int weather, String ownerName, float cash, int usedStorage, int storageSize, int currentDay, int maxDays)
+	private static void PrintSimulationHeader(int weather, String ownerName, double cash, int usedStorage, int storageSize, int currentDay, int maxDays)
 	{			
 		String weekday = "";
 		String weatherText = "";
@@ -352,7 +351,7 @@ public class Main
 		PrintLine();
 		System.out.println("  | " + translation.getText(weekday) + " |\t\t\t" + translation.getText("SIMULATION_HEADER_WEATHER_1") + " " + currentDay + " " + translation.getText("SIMULATION_HEADER_WEATHER_2") + " " + maxDays);
 		PrintLineDashed();		
-		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + " |\t\t\t" + cash/100 + "€");
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + " |\t\t\t" + cash + "€");
 		PrintLineDashed();
 		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + usedStorage + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
 		PrintLine();
@@ -365,9 +364,8 @@ public class Main
 		System.out.println();
 		
 		System.out.println(" 1| " + translation.getText("SIMULATION_MENU_START_DAY"));
-		System.out.println(" 2| " + translation.getText("SIMULATION_MENU_STORAGE"));
-		System.out.println(" 3| " + translation.getText("SIMULATION_MENU_PRICES"));
-		
+		System.out.println(" 2| " + translation.getText("SIMULATION_MENU_PRICES"));
+		System.out.println(" 3| " + translation.getText("SIMULATION_MENU_STORAGE"));
 		System.out.println(" 4| " + translation.getText("SIMULATION_MENU_GET_PRODUCTS"));
 
 		System.out.println();
@@ -378,6 +376,33 @@ public class Main
 
 		
 		PrintInput();
+	}
+	
+	
+	private static void PrintSimulationPricesMenu()
+	{
+		PrintClearConsole();
+		PrintLine();
+		System.out.println(" " + translation.getText("SIMULATION_PRICES_MENU"));
+		PrintLine();
+		PrintLineDashed();
+		
+		PrintInput();
+		
+	}
+	
+	private static void SimulationPricesMenu()
+	{
+		PrintSimulationPricesMenu();
+		
+		try
+		{
+			Thread.sleep(5000);
+		}
+		catch(Exception e)
+		{
+			
+		}
 	}
 	
 	
@@ -421,8 +446,10 @@ public class Main
 					simulation.nextDay();
 					break;
 				case 2:
+					SimulationPricesMenu();
 					break;
 				case 3:
+					
 					break;
 				default:
 					PrintInvalidInput();
@@ -543,7 +570,6 @@ public class Main
 		
 	}
 	
-
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Main Funktion

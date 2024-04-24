@@ -128,7 +128,7 @@
   "SIMULATION_HEADER_STORAGE_3":
   {
   	"DE": "Plätze belegt",
-	"ENG": "space taken"
+	"ENG": "spaces taken"
   },
   
   "SIMULATION_HEADER_WEATHER_1":
@@ -190,6 +190,13 @@
   	"DE": "Bleiben",
 	"ENG": "Stay"
   }, 
+  
+  "SIMULATION_PRICES_MENU":
+  {
+  	"DE": "Aktuelle Preise",
+	"ENG": "Current prices"
+  }, 
+  
   
   "DAY_1":
   {

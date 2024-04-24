@@ -1,24 +1,40 @@
 package simulation;
 
+import java.util.Random;
+
 public class Simulation 
 {
 	public class Day
 	{
-		
 		// 0 - Rainy
 		// 1 - Cloudy
 		// 2 - Sunny
-		
 		public final int weather;
-		public Market markt;
 		
+		public Market market;
 		
 		public Day()
 		{
-			this.weather = (int)(Math.random()*4);
-
+			Random r = new Random();
+			this.weather = (int)(r.nextInt(3));
+			market = new Market(this.weather);
+			
+			
+			double[] prices = market.getPrices();
+			for(int i = 0; i<6; i++)
+			{
+				System.out.println(prices[i]);
+			}
+			
+			try
+			{
+				Thread.sleep(8000);
+			}
+			catch(Exception e)
+			{
+				
+			}
 		}
-		
 	}
 	
 	

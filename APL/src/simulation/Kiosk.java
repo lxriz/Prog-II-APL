@@ -5,7 +5,7 @@ import products.Product;
 public class Kiosk 
 {
 	// in cent
-	private float cash;
+	private double cash;
 	
 	public final String ownerName;
 	
@@ -21,13 +21,24 @@ public class Kiosk
 		
 		// (Possible difficulty levels implementation)
 		
-		this.cash = 3000;
+		this.cash = 30.00;
 		this.usedStorage = 0;
 		this.storageSize = 30;
 		this.storage = new Product[this.storageSize];		
 	}
 	
-	public float getCash()
+	public boolean setCash(double change)
+	{
+		if(this.cash-change >= 0)
+		{
+			this.cash += change;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public double getCash()
 	{
 		return this.cash;
 	}
