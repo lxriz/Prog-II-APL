@@ -15,7 +15,8 @@ public class Simulation
 		
 		public Day()
 		{
-			this.weather = (int)Math.random()*4;
+			this.weather = (int)(Math.random()*4);
+
 		}
 		
 	}
@@ -25,14 +26,16 @@ public class Simulation
 	private int maxDays;
 	
 	public Kiosk kiosk; 
+	public Day day;
+	
 	
 	public Simulation(Kiosk kiosk)
 	{
 		this.kiosk = kiosk;
+		this.day = new Day();
 		
 		this.currentDay = 1;
 		this.maxDays = 21;
-		
 	}
 	
 	
@@ -63,6 +66,7 @@ public class Simulation
 		if(!endDays())
 		{
 			this.currentDay += 1;
+			day = new Day();
 		}
 	}
 }

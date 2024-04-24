@@ -300,14 +300,10 @@ public class Main
 	}
 	
 	
-	private static void PrintSimulationHeader(String ownerName, float cash, int usedStorage, int storageSize, int currentDay, int maxDays)
-	{
-		// TEMP
-		
-		int weather_temp = 0;
-		
+	private static void PrintSimulationHeader(int weather, String ownerName, float cash, int usedStorage, int storageSize, int currentDay, int maxDays)
+	{			
 		String weekday = "";
-		String weather = "";
+		String weatherText = "";
 		
 		// Lookup table weekday
 		switch(currentDay % 7)
@@ -336,23 +332,23 @@ public class Main
 		}
 		
 		// Lookup table weather
-		switch(weather_temp)
+		switch(weather)
 		{
 			case 0:
-				weather = "WEATHER_RAINY";
+				weatherText = "WEATHER_RAINY";
 				break;
 			case 1:
-				weather = "WEATHER_CLOUDY";
+				weatherText = "WEATHER_CLOUDY";
 				break;
 			case 2:
-				weather = "WEATHER_SUNNY";
+				weatherText = "WEATHER_SUNNY";
 				break;
 		}
 		
 		
-		PrintSimulationAnimation(weather_temp);
+		PrintSimulationAnimation(weather);
 		
-		System.out.println("  " + translation.getText(weather) + "\t\t\t\t" + "[" + ownerName + "'s Kiosk]");
+		System.out.println("  " + translation.getText(weatherText) + "\t\t\t\t" + "[" + ownerName + "'s Kiosk]");
 		PrintLine();
 		System.out.println("  | " + translation.getText(weekday) + " |\t\t\t" + translation.getText("SIMULATION_HEADER_WEATHER_1") + " " + currentDay + " " + translation.getText("SIMULATION_HEADER_WEATHER_2") + " " + maxDays);
 		PrintLineDashed();		
@@ -398,7 +394,7 @@ public class Main
 		{
 			PrintClearConsole();
 
-			PrintSimulationHeader(simulation.kiosk.ownerName, simulation.kiosk.getCash(), simulation.kiosk.getUsedStorage(), simulation.kiosk.storageSize, simulation.getCurrentDay(), simulation.getMaxDays());
+			PrintSimulationHeader(simulation.day.weather, simulation.kiosk.ownerName, simulation.kiosk.getCash(), simulation.kiosk.getUsedStorage(), simulation.kiosk.storageSize, simulation.getCurrentDay(), simulation.getMaxDays());
 			
 			PrintSimulationMenu();
 			
