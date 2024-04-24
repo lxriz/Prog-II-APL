@@ -113,6 +113,36 @@
 	"ENG": "Cash"
   },
   
+  "SIMULATION_HEADER_STORAGE_1":
+  {
+  	"DE": "Lager",
+	"ENG": "Storage"
+  },
+  
+  "SIMULATION_HEADER_STORAGE_2":
+  {
+  	"DE": "von",
+	"ENG": "out of"
+  },
+  
+  "SIMULATION_HEADER_STORAGE_3":
+  {
+  	"DE": "Plätze belegt",
+	"ENG": "space taken"
+  },
+  
+  "SIMULATION_HEADER_WEATHER_1":
+  {
+  	"DE": "Tag",
+	"ENG": "Day"
+  },
+  
+  "SIMULATION_HEADER_WEATHER_2":
+  {
+  	"DE": "von",
+	"ENG": "out of"
+  },
+  
   "SIMULATION_MENU_START_DAY":
   {
   	"DE": "Tag beginnen",

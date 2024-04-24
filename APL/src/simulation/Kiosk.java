@@ -4,12 +4,13 @@ import products.Product;
 
 public class Kiosk 
 {
+	// in cent
 	private float cash;
 	
 	public final String ownerName;
 	
-	private int currentStorageSize;
-	private final int maxStorageSize;
+	private int usedStorage;
+	public final int storageSize;
 	private Product[] storage;
 	
 	
@@ -19,10 +20,21 @@ public class Kiosk
 		this.ownerName = ownerName;
 		
 		// (Possible difficulty levels implementation)
-		this.cash = 30;
-		this.maxStorageSize = 30;
-		this.storage = new Product[this.maxStorageSize];		
+		
+		this.cash = 3000;
+		this.usedStorage = 0;
+		this.storageSize = 30;
+		this.storage = new Product[this.storageSize];		
 	}
 	
+	public float getCash()
+	{
+		return this.cash;
+	}
+	
+	public int getUsedStorage()
+	{
+		return this.usedStorage;
+	}
 	
 }

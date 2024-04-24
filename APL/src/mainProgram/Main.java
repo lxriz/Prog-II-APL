@@ -57,7 +57,7 @@ public class Main
 		
 		try
 		{
-			Thread.sleep(1500);
+			Thread.sleep(800);
 		}
 		catch(Exception e)
 		{
@@ -270,24 +270,27 @@ public class Main
 		{
 			case 0:
 				// RAINY
-				System.out.println("\t\t/\t / _____/___   /");
-				System.out.println("\t/\t\t  /         \\   /");
-				System.out.println("\t\t/\t  |   ___   |   /");
-				System.out.println("\t\t/\t  |  |___|  | /");
-				System.out.println("\t/\t\t/ |_________|     /");
+				System.out.println("\t\t/\t    /      /      /   / ");
+				System.out.println("\t\t/\t / _____/___      /");
+				System.out.println("\t/\t\t  /         \\       /   /");
+				System.out.println("\t\t/\t  |   ___   |            /");
+				System.out.println("\t\t/\t  |  |___|  | /        /");
+				System.out.println("\t/\t\t/ |_________|       /");
 				break;
 			case 1:
 				// CLOUDY
-				System.out.println("\t\t\t   _________");
-				System.out.println("\t\t\t  /         \\");
+				System.out.println("\t\t\t               \t ooOoo");
+				System.out.println("\t\t\t   _________   \toOOooOoOoo");
+				System.out.println("\t\t\t  /         \\ \t ooOOooo");
 				System.out.println("\t\t\t  |   ___   |");
 				System.out.println("\t\t\t  |  |___|  |");
 				System.out.println("\t\t\t  |_________|");
 				break;
 			case 2:
 				// SUNNY
-				System.out.println("\t\t\t   _________");
-				System.out.println("\t\t\t  /         \\");
+				System.out.println("\t\t\t               \t ooo");
+				System.out.println("\t\t\t   _________   \tooooo");
+				System.out.println("\t\t\t  /         \\ \t ooo");
 				System.out.println("\t\t\t  |   ___   |");
 				System.out.println("\t\t\t  |  |___|  |");
 				System.out.println("\t\t\t  |_________|");
@@ -297,7 +300,7 @@ public class Main
 	}
 	
 	
-	private static void PrintSimulationHeader(String username, int currentDay, int maxDays)
+	private static void PrintSimulationHeader(String ownerName, float cash, int usedStorage, int storageSize, int currentDay, int maxDays)
 	{
 		// TEMP
 		
@@ -349,14 +352,14 @@ public class Main
 		
 		PrintSimulationAnimation(weather_temp);
 		
-		System.out.println("  " + translation.getText(weather));
+		System.out.println("  " + translation.getText(weather) + "\t\t\t\t" + "[" + ownerName + "'s Kiosk]");
 		PrintLine();
-		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + "\t\t\t500€");
-		PrintLineDotted();
-		System.out.println();
-		PrintLineDotted();
-		System.out.println("  | " + currentDay + "/" + maxDays + "\t" + translation.getText(weekday));
+		System.out.println("  | " + translation.getText(weekday) + " |\t\t\t" + translation.getText("SIMULATION_HEADER_WEATHER_1") + " " + currentDay + " " + translation.getText("SIMULATION_HEADER_WEATHER_2") + " " + maxDays);
+		PrintLineDashed();		
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + " |\t\t\t" + cash/100 + "€");
 		PrintLineDashed();
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + usedStorage + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
+		PrintLine();
 		
 	}
 	
@@ -395,7 +398,7 @@ public class Main
 		{
 			PrintClearConsole();
 
-			PrintSimulationHeader(simulation.getKioskUsername(), simulation.getCurrentDay(), simulation.getMaxDays());
+			PrintSimulationHeader(simulation.kiosk.ownerName, simulation.kiosk.getCash(), simulation.kiosk.getUsedStorage(), simulation.kiosk.storageSize, simulation.getCurrentDay(), simulation.getMaxDays());
 			
 			PrintSimulationMenu();
 			
@@ -419,6 +422,7 @@ public class Main
 					}
 					break;
 				case 1:
+					simulation.nextDay();
 					break;
 				case 2:
 					break;

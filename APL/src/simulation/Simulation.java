@@ -35,12 +35,6 @@ public class Simulation
 		
 	}
 	
-	public String getKioskUsername()
-	{
-		return this.kiosk.ownerName;
-	}
-	 
-	
 	
 	public int getCurrentDay()
 	{
