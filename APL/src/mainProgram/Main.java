@@ -6,19 +6,38 @@ import simulation.Simulation;
 
 
 public class Main 
-{
+{	
 	private static Translation translation = new Translation();
 	
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Utility methods
 	
+	private static int lineLength = 70;
 	
 	private static void PrintLine()
 	{
-		for(int i = 0; i < 50; i++)
+		for(int i = 0; i < lineLength; i++)
 		{
 			System.out.print("-");
+		}
+		System.out.println();
+	}
+	
+	private static void PrintLineDashed()
+	{
+		for(int i = 0; i < lineLength/2; i++)
+		{
+			System.out.print("- ");
+		}
+		System.out.println();
+	}
+	
+	private static void PrintLineDotted()
+	{
+		for(int i = 0; i < lineLength; i++)
+		{
+			System.out.print(".");
 		}
 		System.out.println();
 	}
@@ -30,6 +49,22 @@ public class Main
 		System.out.print("> ");
 	}
 	
+	private static void PrintInvalidInput()
+	{
+		PrintLineDotted();
+		System.out.println(" " + translation.getText("INVALID_INPUT"));
+		PrintLineDotted();
+		
+		try
+		{
+			Thread.sleep(1500);
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+
 	private static void PrintClearConsole()
 	{
 		for(int i = 0; i < 25; i++)
@@ -46,18 +81,18 @@ public class Main
 	private static void PrintChangeLanguage()
 	{
 		PrintLine();
-		System.out.println(translation.getText("LANGUAGE_MENU"));
+		System.out.println(" " + translation.getText("LANGUAGE_MENU"));
 		PrintLine();
 	
 		
 		String[] languages = translation.getSuppoertedLanguages();
 		for(int i = 0; i < languages.length; i++)
 		{
-			System.out.println(Integer.toString(i+1) + "| " + languages[i]);
+			System.out.println(" " + Integer.toString(i+1) + "| " + languages[i]);
 		}
 		
 		System.out.println();
-		System.out.println("0| " + translation.getText("LANGUAGE_MENU_EXIT"));
+		System.out.println(" 0| " + translation.getText("LANGUAGE_MENU_EXIT"));
 
 	}
 	
@@ -68,10 +103,11 @@ public class Main
 		
 		Scanner scan = new Scanner(System.in);
 		
-		PrintClearConsole();
 		
 		while(running)
 		{
+			PrintClearConsole();
+			
 			PrintChangeLanguage();
 			
 			int input = -1;
@@ -82,20 +118,19 @@ public class Main
 			}
 			catch(Exception e)
 			{
-				PrintClearConsole();
 				scan.nextLine();
-				System.out.println(translation.getText("INVALID_INPUT"));
+				PrintInvalidInput();
 				continue;
 			}
 			
-			PrintClearConsole();
 			
 			String[] languages = translation.getSuppoertedLanguages();
 			
 			if(input < 0 || input > languages.length)
 			{
-				System.out.println(translation.getText("INVALID_INPUT"));
+				PrintInvalidInput();
 				continue;
+				
 			}
 				
 			if(input == 0)
@@ -120,7 +155,7 @@ public class Main
 	{
 		PrintClearConsole();
 		PrintLine();
-		System.out.println(translation.getText("HIGHSCORES_MENU"));
+		System.out.println(" " + translation.getText("HIGHSCORES_MENU"));
 		PrintLine();
 		
 		
@@ -144,9 +179,58 @@ public class Main
 	// Simulation
 	
 	
+	private static void PrintExitVerifyMenu()
+	{
+		System.out.println(" " + translation.getText("SIMULATION_MENU_END_GAME_VERIFY"));
+		System.out.println();
+
+		System.out.println(" 1| " + translation.getText("SIMULATION_MENU_END_GAME_VERIFY_STAY"));
+		System.out.println(" 2| " + translation.getText("SIMULATION_MENU_END_GAME_VERIFY_LEAVE"));
+		
+		PrintInput();
+	}
+	
+	
+	private static boolean ExitVerifyMenu()
+	{
+		Scanner scan = new Scanner(System.in);
+		boolean running = true;
+	
+		while(running)
+		{
+			PrintClearConsole();
+			PrintExitVerifyMenu();
+
+			int input = -1;
+			try
+			{
+				input = scan.nextInt();
+			}
+			catch (Exception e)
+			{
+				scan.nextLine();
+			}
+			
+			switch(input)
+			{
+				case 1:
+					running = false;
+					break;
+				case 2:
+					return true;
+				default:
+					PrintInvalidInput();
+					break;
+			}	
+		}
+		
+		return false;
+	}
+	
+	
 	private static void PrintEnterUsernameMenu()
 	{
-		System.out.println(translation.getText("SIMULATION_ENTER_NAME_MENU"));
+		System.out.println(" " + translation.getText("SIMULATION_ENTER_NAME_MENU"));
 		PrintInput();
 	}
 	
@@ -183,12 +267,11 @@ public class Main
 	{
 		// HIER KANN MAN AM ENDE NOCH DAS WETTER IN DER ANIMATION ANZEIGEN LASSEN
 		
-		System.out.println("\t  _______");
-		System.out.println("\t /       \\");
-		System.out.println("\t/         \\");
-		System.out.println("\t|   ___   |    O");
-		System.out.println("\t|  |___|  |   /|\\");
-		System.out.println("\t|_________|   / \\");
+		System.out.println("\t\t\t _________");
+		System.out.println("\t\t\t/         \\");
+		System.out.println("\t\t\t|   ___   |");
+		System.out.println("\t\t\t|  |___|  |");
+		System.out.println("\t\t\t|_________|");
 		
 	}
 	
@@ -225,15 +308,14 @@ public class Main
 		
 		PrintSimulationAnimation();
 		
+		System.out.println("  " + "Es regnet");
 		PrintLine();
-		System.out.println(username + "'s Kiosk");
-		PrintLine();
-		PrintLine();
-		System.out.println(translation.getText("SIMULATION_HEADER_MONEY") + "\t500€");
-		PrintLine();
-		System.out.println(currentDay + "/" + maxDays + "\t" + translation.getText(weekday));
-		PrintLine();
-		
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + "\t\t\t500€");
+		PrintLineDotted();
+		System.out.println();
+		PrintLineDotted();
+		System.out.println("  | " + currentDay + "/" + maxDays + "\t" + translation.getText(weekday));
+		PrintLineDashed();
 		
 	}
 	
@@ -241,17 +323,16 @@ public class Main
 	private static void PrintSimulationMenu()
 	{
 		System.out.println();
-		System.out.println();
 		
-		System.out.println("1| " + translation.getText("SIMULATION_MENU_START_DAY"));
-		System.out.println("2| " + translation.getText("SIMULATION_MENU_STORAGE"));
-		System.out.println("3| " + translation.getText("SIMULATION_MENU_PRICES"));
+		System.out.println(" 1| " + translation.getText("SIMULATION_MENU_START_DAY"));
+		System.out.println(" 2| " + translation.getText("SIMULATION_MENU_STORAGE"));
+		System.out.println(" 3| " + translation.getText("SIMULATION_MENU_PRICES"));
 		
-		System.out.println("4| " + translation.getText("SIMULATION_MENU_GET_PRODUCTS"));
+		System.out.println(" 4| " + translation.getText("SIMULATION_MENU_GET_PRODUCTS"));
 
 		System.out.println();
 		
-		System.out.println("0| " + translation.getText("SIMULATION_MENU_END_GAME"));
+		System.out.println(" 0| " + translation.getText("SIMULATION_MENU_END_GAME"));
 
 		System.out.println();
 
@@ -262,34 +343,53 @@ public class Main
 	
 	private static void Simulation()
 	{
-		PrintClearConsole();
+		boolean running = true;
 		
-		
+		Scanner scan = new Scanner(System.in);
+				
 		Simulation simulation = new Simulation(new Kiosk(EnterUsernameMenu()));
 
 		
+		while(running)
+		{
+			PrintClearConsole();
 
-		PrintSimulationHeader(simulation.getKioskUsername(), simulation.getCurrentDay(), simulation.getMaxDays());
-		
-		PrintSimulationMenu();
-		
-		try
-		{
-			Thread.sleep(8000);
-		}
-		catch(Exception e)
-		{
+			PrintSimulationHeader(simulation.getKioskUsername(), simulation.getCurrentDay(), simulation.getMaxDays());
 			
-		}
-		
-		// 1. Tag starten
-		// 2. Waren einkaufen
-		// 3. Lager ansehen
-		
-		
+			PrintSimulationMenu();
+			
+			int input = -1; 
+			try
+			{
+				input = scan.nextInt();
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+			}
+			
+			
+			switch(input)
+			{
+				case 0:
+					if(ExitVerifyMenu())
+					{
+						running = false;
+					}
+					break;
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				default:
+					PrintInvalidInput();
+					break;
+			}	
+		}	
 	}
 		
-	
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Main Menu
@@ -298,13 +398,13 @@ public class Main
 	private static void PrintMainMenu()
 	{
 		PrintLine();
-		System.out.println(translation.getText("MAIN_MENU"));
+		System.out.println(" " + translation.getText("MAIN_MENU"));
 		PrintLine();
 		
-		System.out.println("1| " + translation.getText("MAIN_MENU_START"));
-		System.out.println("2| " + translation.getText("MAIN_MENU_CHANGE_LANGUAGE"));
-		System.out.println("3| " + translation.getText("MAIN_MENU_SEE_SCORE"));
-		System.out.println("4| " + translation.getText("MAIN_MENU_EXIT"));
+		System.out.println(" 1| " + translation.getText("MAIN_MENU_START"));
+		System.out.println(" 2| " + translation.getText("MAIN_MENU_CHANGE_LANGUAGE"));
+		System.out.println(" 3| " + translation.getText("MAIN_MENU_SEE_SCORE"));
+		System.out.println(" 4| " + translation.getText("MAIN_MENU_EXIT"));
 	}
 	
 	
@@ -408,7 +508,7 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-		PrintStartScreen();
+		//PrintStartScreen();
 		PrintClearConsole();
 		MainMenu();
 	}

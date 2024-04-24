@@ -143,6 +143,24 @@
 	"ENG": "Close kiosk"
   }, 
   
+  "SIMULATION_MENU_END_GAME_VERIFY":
+  {
+  	"DE": "Wills du wirklich deinen Kiosk schließen? Das Spiel endet damit!",
+	"ENG": "Do you really want to close the kiosk? The game ends with this!"
+  }, 
+  
+  "SIMULATION_MENU_END_GAME_VERIFY_LEAVE":
+  {
+  	"DE": "Gehen",
+	"ENG": "Leave"
+  }, 
+  
+  "SIMULATION_MENU_END_GAME_VERIFY_STAY":
+  {
+  	"DE": "Bleiben",
+	"ENG": "Stay"
+  }, 
+  
   "DAY_1":
   {
   	"DE": "Montag",

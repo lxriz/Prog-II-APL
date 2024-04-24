@@ -13,6 +13,7 @@ public class Kiosk
 	private Product[] storage;
 	
 	
+	
 	public Kiosk(String ownerName)
 	{
 		this.ownerName = ownerName;
