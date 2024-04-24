@@ -247,7 +247,12 @@ public class Main
 		System.out.println("2| " + translation.getText("SIMULATION_MENU_STORAGE"));
 		System.out.println("3| " + translation.getText("SIMULATION_MENU_PRICES"));
 		
+		System.out.println("4| " + translation.getText("SIMULATION_MENU_GET_PRODUCTS"));
+
+		System.out.println();
 		
+		System.out.println("0| " + translation.getText("SIMULATION_MENU_END_GAME"));
+
 		System.out.println();
 
 		

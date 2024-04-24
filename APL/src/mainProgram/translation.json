@@ -131,6 +131,18 @@
 	"ENG": "Change prices"
   }, 
   
+  "SIMULATION_MENU_GET_PRODUCTS":
+  {
+  	"DE": "Waren bestellen",
+	"ENG": "Order goods"
+  }, 
+  
+  "SIMULATION_MENU_END_GAME":
+  {
+  	"DE": "Kiosk schließen",
+	"ENG": "Close kiosk"
+  }, 
+  
   "DAY_1":
   {
   	"DE": "Montag",
