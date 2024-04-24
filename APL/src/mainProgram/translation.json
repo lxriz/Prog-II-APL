@@ -201,10 +201,25 @@
   {
   	"DE": "Sonntag",
 	"ENG": "Sunday"
+  },
+ 
+ "WEATHER_RAINY":
+  {
+  	"DE": "Es regnet...",
+	"ENG": "It is raining..."
+  },
+ 
+ "WEATHER_CLOUDY":
+  {
+  	"DE": "Es ist bewölkt...",
+	"ENG": "It is cloudy..."
+  },
+  
+  "WEATHER_SUNNY":
+  {
+  	"DE": "Es ist sonnig...",
+	"ENG": "It is sunny..."
   }
- 
- 
- 
  
   
 }

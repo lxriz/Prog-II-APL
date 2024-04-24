@@ -6,14 +6,15 @@ public abstract class Product
 	// expiresDays > 0, good to sell
 	// expiresDays == 0, product has to be thrown away
 	// expiresDays < 0, the product never expires
-	int expiresDays; 
+	public int expiresDays; 
 	
 		
 	// Saves the size of the product for storage
 	// The value is simplified with no real measurement
-	int size; 
+	public int size; 
 	
-	
+	//
+	public float buyPrice; 
 	
 	// WETTER VARIABLEN
 	

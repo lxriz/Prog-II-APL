@@ -2,11 +2,29 @@ package simulation;
 
 public class Simulation 
 {
+	public class Day
+	{
+		
+		// 0 - Rainy
+		// 1 - Cloudy
+		// 2 - Sunny
+		
+		public final int weather;
+		public Market markt;
+		
+		
+		public Day()
+		{
+			this.weather = (int)Math.random()*4;
+		}
+		
+	}
+	
+	
 	private int currentDay; 
 	private int maxDays;
 	
 	public Kiosk kiosk; 
-	public Market market;
 	
 	public Simulation(Kiosk kiosk)
 	{
@@ -14,7 +32,6 @@ public class Simulation
 		
 		this.currentDay = 1;
 		this.maxDays = 21;
-		// MARKET EINFÜGEN
 		
 	}
 	

@@ -263,23 +263,50 @@ public class Main
 	}
 	
 	
-	private static void PrintSimulationAnimation()
+	private static void PrintSimulationAnimation(int weather)
 	{
 		// HIER KANN MAN AM ENDE NOCH DAS WETTER IN DER ANIMATION ANZEIGEN LASSEN
-		
-		System.out.println("\t\t\t _________");
-		System.out.println("\t\t\t/         \\");
-		System.out.println("\t\t\t|   ___   |");
-		System.out.println("\t\t\t|  |___|  |");
-		System.out.println("\t\t\t|_________|");
-		
+		switch(weather)
+		{
+			case 0:
+				// RAINY
+				System.out.println("\t\t/\t / _____/___   /");
+				System.out.println("\t/\t\t  /         \\   /");
+				System.out.println("\t\t/\t  |   ___   |   /");
+				System.out.println("\t\t/\t  |  |___|  | /");
+				System.out.println("\t/\t\t/ |_________|     /");
+				break;
+			case 1:
+				// CLOUDY
+				System.out.println("\t\t\t   _________");
+				System.out.println("\t\t\t  /         \\");
+				System.out.println("\t\t\t  |   ___   |");
+				System.out.println("\t\t\t  |  |___|  |");
+				System.out.println("\t\t\t  |_________|");
+				break;
+			case 2:
+				// SUNNY
+				System.out.println("\t\t\t   _________");
+				System.out.println("\t\t\t  /         \\");
+				System.out.println("\t\t\t  |   ___   |");
+				System.out.println("\t\t\t  |  |___|  |");
+				System.out.println("\t\t\t  |_________|");
+				break;
+				
+		}
 	}
 	
 	
 	private static void PrintSimulationHeader(String username, int currentDay, int maxDays)
 	{
-		String weekday = "";
+		// TEMP
 		
+		int weather_temp = 0;
+		
+		String weekday = "";
+		String weather = "";
+		
+		// Lookup table weekday
 		switch(currentDay % 7)
 		{
 			case 0:
@@ -305,10 +332,24 @@ public class Main
 				break;
 		}
 		
+		// Lookup table weather
+		switch(weather_temp)
+		{
+			case 0:
+				weather = "WEATHER_RAINY";
+				break;
+			case 1:
+				weather = "WEATHER_CLOUDY";
+				break;
+			case 2:
+				weather = "WEATHER_SUNNY";
+				break;
+		}
 		
-		PrintSimulationAnimation();
 		
-		System.out.println("  " + "Es regnet");
+		PrintSimulationAnimation(weather_temp);
+		
+		System.out.println("  " + translation.getText(weather));
 		PrintLine();
 		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + "\t\t\t500€");
 		PrintLineDotted();
@@ -404,7 +445,8 @@ public class Main
 		System.out.println(" 1| " + translation.getText("MAIN_MENU_START"));
 		System.out.println(" 2| " + translation.getText("MAIN_MENU_CHANGE_LANGUAGE"));
 		System.out.println(" 3| " + translation.getText("MAIN_MENU_SEE_SCORE"));
-		System.out.println(" 4| " + translation.getText("MAIN_MENU_EXIT"));
+		System.out.println();
+		System.out.println(" 0| " + translation.getText("MAIN_MENU_EXIT"));
 	}
 	
 	
@@ -415,6 +457,8 @@ public class Main
 		Scanner scan = new Scanner(System.in);
 		while(running)
 		{
+			PrintClearConsole();
+			
 			PrintMainMenu();
 			
 			int input = -1;
@@ -427,8 +471,6 @@ public class Main
 			{
 				scan.nextLine();
 			}
-			
-			PrintClearConsole();
 	
 			// HIER FEHLEN NOCH MEHR CASES
 			// DEBUG CASE FÜR toString() ? 
@@ -446,11 +488,12 @@ public class Main
 					HighscoresMenu();
 					PrintClearConsole();
 					break;
-				case 4:
+				case 0:
+					PrintClearConsole();
 					running = false;
 					break;
 				default:
-					System.out.println(translation.getText("INVALID_INPUT"));
+					PrintInvalidInput();
 					break;
 			
 			}
