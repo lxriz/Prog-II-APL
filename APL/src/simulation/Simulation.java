@@ -22,6 +22,7 @@ public class Simulation
 	{
 		return this.kiosk.ownerName;
 	}
+	 
 	
 	
 	public int getCurrentDay()
@@ -48,7 +49,7 @@ public class Simulation
 	
 	public void nextDay()
 	{
-		if(endDays())
+		if(!endDays())
 		{
 			this.currentDay += 1;
 		}

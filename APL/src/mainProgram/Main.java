@@ -16,7 +16,7 @@ public class Main
 	
 	private static void PrintLine()
 	{
-		for(int i = 0; i < 45; i++)
+		for(int i = 0; i < 50; i++)
 		{
 			System.out.print("-");
 		}
@@ -82,7 +82,10 @@ public class Main
 			}
 			catch(Exception e)
 			{
+				PrintClearConsole();
+				scan.nextLine();
 				System.out.println(translation.getText("INVALID_INPUT"));
+				continue;
 			}
 			
 			PrintClearConsole();
@@ -176,6 +179,20 @@ public class Main
 	}
 	
 	
+	private static void PrintSimulationAnimation()
+	{
+		// HIER KANN MAN AM ENDE NOCH DAS WETTER IN DER ANIMATION ANZEIGEN LASSEN
+		
+		System.out.println("\t  _______");
+		System.out.println("\t /       \\");
+		System.out.println("\t/         \\");
+		System.out.println("\t|   ___   |    O");
+		System.out.println("\t|  |___|  |   /|\\");
+		System.out.println("\t|_________|   / \\");
+		
+	}
+	
+	
 	private static void PrintSimulationHeader(String username, int currentDay, int maxDays)
 	{
 		String weekday = "";
@@ -205,8 +222,36 @@ public class Main
 				break;
 		}
 		
-		System.out.println(username + "\t\t" + translation.getText(weekday) + "\t\t"+ currentDay + "/" + maxDays);
+		
+		PrintSimulationAnimation();
+		
 		PrintLine();
+		System.out.println(username + "'s Kiosk");
+		PrintLine();
+		PrintLine();
+		System.out.println(translation.getText("SIMULATION_HEADER_MONEY") + "\t500€");
+		PrintLine();
+		System.out.println(currentDay + "/" + maxDays + "\t" + translation.getText(weekday));
+		PrintLine();
+		
+		
+	}
+	
+	
+	private static void PrintSimulationMenu()
+	{
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("1| " + translation.getText("SIMULATION_MENU_START_DAY"));
+		System.out.println("2| " + translation.getText("SIMULATION_MENU_STORAGE"));
+		System.out.println("3| " + translation.getText("SIMULATION_MENU_PRICES"));
+		
+		
+		System.out.println();
+
+		
+		PrintInput();
 	}
 	
 	
@@ -216,19 +261,26 @@ public class Main
 		
 		
 		Simulation simulation = new Simulation(new Kiosk(EnterUsernameMenu()));
+
 		
+
 		PrintSimulationHeader(simulation.getKioskUsername(), simulation.getCurrentDay(), simulation.getMaxDays());
 		
+		PrintSimulationMenu();
 		
-		// TEMP !!!
 		try
 		{
-			Thread.sleep(3000);
+			Thread.sleep(8000);
 		}
 		catch(Exception e)
 		{
 			
 		}
+		
+		// 1. Tag starten
+		// 2. Waren einkaufen
+		// 3. Lager ansehen
+		
 		
 	}
 		

@@ -8,7 +8,8 @@ public class Kiosk
 	
 	public final String ownerName;
 	
-	private final int storageSize;
+	private int currentStorageSize;
+	private final int maxStorageSize;
 	private Product[] storage;
 	
 	
@@ -18,8 +19,8 @@ public class Kiosk
 		
 		// (Possible difficulty levels implementation)
 		this.cash = 30;
-		this.storageSize = 30;
-		this.storage = new Product[this.storageSize];		
+		this.maxStorageSize = 30;
+		this.storage = new Product[this.maxStorageSize];		
 	}
 	
 	
