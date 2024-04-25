@@ -417,7 +417,7 @@ public class Main
 		System.out.println();
 		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_SIZE") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_EXPIRES") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
 		PrintLineDashed();
-		System.out.println(" 1| " + translation.getText("PRODUCT_NAME_CIGARETTES") + "\t" +simulation.day.market.cigarettes.size + "\t" + simulation.day.market.cigarettes.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t" + simulation.day.market.cigarettesPrice);
+		System.out.println(" 1| " + translation.getText("PRODUCT_NAME_CIGARETTES") + "\t" +simulation.day.market.cigarettes.size + "\t" + simulation.day.market.cigarettes.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + simulation.day.market.cigarettesPrice + "€");
 		PrintInput();
 	}
 	

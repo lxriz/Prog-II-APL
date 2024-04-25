@@ -56,13 +56,20 @@ public class Market
 		lemonade = new Lemonade();
 		newspaper = new Newspaper();
 		
-		cigarettesPrice = calculatePriceVariation(calculatePriceWeather(cigarettes.basePrice, cigarettes.priceWeather[weather]), cigarettes.basePriceVariation);
-		friesPrice = calculatePriceVariation(calculatePriceWeather(fries.basePrice, fries.priceWeather[weather]), fries.basePriceVariation);
-		gumPrice = calculatePriceVariation(calculatePriceWeather(gum.basePrice, gum.priceWeather[weather]), gum.basePriceVariation);
-		iceCreamPrice = calculatePriceVariation(calculatePriceWeather(iceCream.basePrice, iceCream.priceWeather[weather]), iceCream.basePriceVariation);
-		lemonadePrice = calculatePriceVariation(calculatePriceWeather(lemonade.basePrice, lemonade.priceWeather[weather]), lemonade.basePriceVariation);
-		newspaperPrice = calculatePriceVariation(calculatePriceWeather(newspaper.basePrice, newspaper.priceWeather[weather]), newspaper.basePriceVariation);
+		cigarettesPrice = roundPrice(calculatePriceVariation(calculatePriceWeather(cigarettes.basePrice, cigarettes.priceWeather[weather]), cigarettes.basePriceVariation));
+		friesPrice = roundPrice(calculatePriceVariation(calculatePriceWeather(fries.basePrice, fries.priceWeather[weather]), fries.basePriceVariation));
+		gumPrice = roundPrice(calculatePriceVariation(calculatePriceWeather(gum.basePrice, gum.priceWeather[weather]), gum.basePriceVariation));
+		iceCreamPrice = roundPrice(calculatePriceVariation(calculatePriceWeather(iceCream.basePrice, iceCream.priceWeather[weather]), iceCream.basePriceVariation));
+		lemonadePrice = roundPrice(calculatePriceVariation(calculatePriceWeather(lemonade.basePrice, lemonade.priceWeather[weather]), lemonade.basePriceVariation));
+		newspaperPrice = roundPrice(calculatePriceVariation(calculatePriceWeather(newspaper.basePrice, newspaper.priceWeather[weather]), newspaper.basePriceVariation));
 	}
+	
+	
+	private double roundPrice(double price)
+	{
+		return Math.round(price * 100) / 100.0;
+	}
+	
 	
 	public double[] getPrices()
 	{
