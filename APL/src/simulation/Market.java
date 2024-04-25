@@ -65,10 +65,12 @@ public class Market
 	}
 	
 	
+	
 	private double roundPrice(double price)
 	{
 		return Math.round(price * 100) / 100.0;
 	}
+	
 	
 	
 	public double[] getPrices()

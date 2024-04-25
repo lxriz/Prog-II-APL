@@ -23,7 +23,7 @@ public class Simulation
 	
 	
 	private int currentDay; 
-	private int maxDays;
+	public final int maxDays;
 	
 	public Kiosk kiosk; 
 	public Day day;
@@ -43,12 +43,7 @@ public class Simulation
 	{
 		return this.currentDay;
 	}
-	
-	
-	public int getMaxDays()
-	{
-		return this.maxDays;
-	}
+
 	
 	
 	public boolean endDays()

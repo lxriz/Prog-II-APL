@@ -74,6 +74,13 @@ public class Main
 	}
 	
 	
+	private static String formateDouble(double d)
+	{
+		return String.format("%.2f", d);
+	}
+	
+	
+	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Change Language 
 	
@@ -301,13 +308,13 @@ public class Main
 	}
 	
 	
-	private static void PrintSimulationHeader(int weather, String ownerName, double cash, int usedStorage, int storageSize, int currentDay, int maxDays)
+	private static void PrintSimulationHeader(Simulation simulation)
 	{			
 		String weekday = "";
 		String weatherText = "";
 		
 		// Lookup table weekday
-		switch(currentDay % 7)
+		switch(simulation.getCurrentDay() % 7)
 		{
 			case 0:
 				weekday = "DAY_7";
@@ -333,7 +340,7 @@ public class Main
 		}
 		
 		// Lookup table weather
-		switch(weather)
+		switch(simulation.day.weather)
 		{
 			case 0:
 				weatherText = "WEATHER_RAINY";
@@ -347,15 +354,15 @@ public class Main
 		}
 		
 		
-		PrintSimulationAnimation(weather);
+		PrintSimulationAnimation(simulation.day.weather);
 		
-		System.out.println("  " + translation.getText(weatherText) + "\t\t\t\t" + "[" + ownerName + "'s Kiosk]");
+		System.out.println("  " + translation.getText(weatherText) + "\t\t\t\t" + "[" + simulation.kiosk.ownerName + "'s Kiosk]");
 		PrintLine();
-		System.out.println("  | " + translation.getText(weekday) + " |\t\t\t" + translation.getText("SIMULATION_HEADER_WEATHER_1") + " " + currentDay + " " + translation.getText("SIMULATION_HEADER_WEATHER_2") + " " + maxDays);
+		System.out.println("  | " + translation.getText(weekday) + " |\t\t\t" + translation.getText("SIMULATION_HEADER_WEATHER_1") + " " + simulation.getCurrentDay() + " " + translation.getText("SIMULATION_HEADER_WEATHER_2") + " " + simulation.maxDays);
 		PrintLineDashed();		
-		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + " |\t\t\t" + cash + "€");
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + " |\t\t\t" + formateDouble(simulation.kiosk.getCash()) + "€");
 		PrintLineDashed();
-		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + usedStorage + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + simulation.kiosk.getUsedStorage() + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + simulation.kiosk.storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
 		PrintLine();
 		
 	}
@@ -407,17 +414,66 @@ public class Main
 		}
 	}
 	
+	private static void PrintSimulationMarketBuyMenu()
+	{
+		PrintLineDashed();
+		System.out.println(" " + translation.getText("SIMULATION_MARKET_MENU_QUESTION_2"));
+		PrintInput();
+	}
+	
+	private static int SimulationMarketBuyMenu()
+	{
+		Scanner scan = new Scanner(System.in);
+		PrintSimulationMarketBuyMenu();
+		
+		int input = -1;
+		try
+		{
+			input = scan.nextInt();
+		}
+		catch(Exception e)
+		{
+			scan.nextLine();
+			PrintInvalidInput();
+			return 0;
+		}
+		
+		if(input < 0 || input > 6)
+		{
+			PrintInvalidInput();
+			return 0;
+		}
+		
+		return input;
+	}
 	
 	private static void PrintSimulationMarketMenu(Simulation simulation)
 	{
 		PrintClearConsole();
+		PrintSimulationHeader(simulation);
 		PrintLine();
 		System.out.println(" " + translation.getText("SIMULATION_MARKET_MENU"));
 		PrintLine();
 		System.out.println();
-		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_SIZE") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_EXPIRES") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
+		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_SIZE") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_EXPIRES") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
 		PrintLineDashed();
-		System.out.println(" 1| " + translation.getText("PRODUCT_NAME_CIGARETTES") + "\t" +simulation.day.market.cigarettes.size + "\t" + simulation.day.market.cigarettes.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + simulation.day.market.cigarettesPrice + "€");
+		System.out.println(" 1| " + translation.getText("PRODUCT_NAME_CIGARETTES") + "\t\t" +simulation.day.market.cigarettes.size + "\t" + simulation.day.market.cigarettes.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + formateDouble(simulation.day.market.cigarettesPrice) + "€");
+		PrintLineDotted();
+		System.out.println(" 2| " + translation.getText("PRODUCT_NAME_FRIES") + "\t\t" +simulation.day.market.fries.size + "\t" + simulation.day.market.fries.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + formateDouble(simulation.day.market.friesPrice) + "€");
+		PrintLineDotted();
+		System.out.println(" 3| " + translation.getText("PRODUCT_NAME_GUM") + "\t\t" +simulation.day.market.gum.size + "\t" + simulation.day.market.gum.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + formateDouble(simulation.day.market.gumPrice) + "€");
+		PrintLineDotted();
+		System.out.println(" 4| " + translation.getText("PRODUCT_NAME_ICE_CREAM") + "\t\t" +simulation.day.market.iceCream.size + "\t" + simulation.day.market.iceCream.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + formateDouble(simulation.day.market.iceCreamPrice) + "€");
+		PrintLineDotted();
+		System.out.println(" 5| " + translation.getText("PRODUCT_NAME_LEMONADE") + "\t\t" +simulation.day.market.lemonade.size + "\t" + simulation.day.market.lemonade.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + formateDouble(simulation.day.market.lemonadePrice) + "€");
+		PrintLineDotted();
+		System.out.println(" 6| " + translation.getText("PRODUCT_NAME_NEWSPAPER") + "\t\t" +simulation.day.market.newspaper.size + "\t" + simulation.day.market.newspaper.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t\t" + formateDouble(simulation.day.market.newspaperPrice) + "€");
+		PrintLine();
+		
+		System.out.println(" 0| " + translation.getText("SIMULATION_MARKET_MENU_BACK"));
+		System.out.println();
+		System.out.println(" " + translation.getText("SIMULATION_MARKET_MENU_QUESTION"));
+		
 		PrintInput();
 	}
 	
@@ -442,8 +498,22 @@ public class Main
 				scan.nextLine();
 			}
 			
-			// TEMP
-			running = false;
+			int amount = 0;
+			switch(input)
+			{
+				case 0:
+					running = false;
+					break;
+				case 1:
+					amount = SimulationMarketBuyMenu();
+					break;
+				case 2:
+					
+					break;
+				default:
+					PrintInvalidInput();
+					break;
+			}
 			
 		}
 	}
@@ -462,7 +532,9 @@ public class Main
 		{
 			PrintClearConsole();
 
-			PrintSimulationHeader(simulation.day.weather, simulation.kiosk.ownerName, simulation.kiosk.getCash(), simulation.kiosk.getUsedStorage(), simulation.kiosk.storageSize, simulation.getCurrentDay(), simulation.getMaxDays());
+			//PrintSimulationHeader(simulation.day.weather, simulation.kiosk.ownerName, simulation.kiosk.getCash(), simulation.kiosk.getUsedStorage(), simulation.kiosk.storageSize, simulation.getCurrentDay(), simulation.getMaxDays());
+			PrintSimulationHeader(simulation);
+
 			
 			PrintSimulationMenu();
 			

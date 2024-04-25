@@ -35,6 +35,12 @@
     "ENG": "Ice cream"
   },
   
+  "PRODUCT_NAME_GUM":
+  {
+    "DE": "Kaugummi",
+    "ENG": "Chewing Gum"
+  },
+  
   "START_SCREEN":
   {
   	"DE": "von Loris Kulke",
@@ -231,6 +237,36 @@
   {
   	"DE": "Tage",
 	"ENG": "Days"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_BACK":
+  {
+  	"DE": "Zurück",
+	"ENG": "Back"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_QUESTION":
+  {
+  	"DE": "Was willst du kaufen?",
+	"ENG": "What do you want to buy?"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_QUESTION_2":
+  {
+  	"DE": "Wie viel willst du kaufen?",
+	"ENG": "How much do you want to buy?"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_ERROR_MONEY":
+  {
+  	"DE": "Du hast nicht genug Geld!",
+	"ENG": "You don't have enough money!"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_ERROR_STORAGE":
+  {
+  	"DE": "Dein Lager ist voll!",
+	"ENG": "Your storage is full!"
   }, 
   
   "DAY_1":
