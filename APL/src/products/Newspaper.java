@@ -4,6 +4,8 @@ public class Newspaper extends Product
 {	
 	public Newspaper()
 	{
+		this.name = "PRODUCT_NAME_NEWSPAPER";
+		
 		this.expiresDays = 1;
 		this.size = 2;
 		
@@ -14,6 +16,8 @@ public class Newspaper extends Product
 	
 	public Newspaper(double buyPrice)
 	{
+		this.name = "PRODUCT_NAME_NEWSPAPER";
+		
 		this.expiresDays = 1;
 		this.size = 2;
 		this.buyPrice = buyPrice;

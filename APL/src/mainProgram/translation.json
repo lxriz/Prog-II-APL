@@ -203,6 +203,54 @@
 	"ENG": "Current prices"
   }, 
   
+  "SIMULATION_STORAGE_MENU":
+  {
+  	"DE": "Lager",
+	"ENG": "Storage"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_HEADER":
+  {
+  	"DE": "Name",
+	"ENG": "Name"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_SIZE":
+  {
+  	"DE": "Größe",
+	"ENG": "Size"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_EXPIRES":
+  {
+  	"DE": "Haltbarkeit",
+	"ENG": "Shelf life"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_BUY_PRICE":
+  {
+  	"DE": "Einkaufspreis",
+	"ENG": "Buy price"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_SORT_NAME":
+  {
+  	"DE": "Nach Name sortieren",
+	"ENG": "Sort by name"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_SORT_EXPIRES":
+  {
+  	"DE": "Nach Verfallsdatum sortieren",
+	"ENG": "Sort by shelf life"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_BACK":
+  {
+  	"DE": "Zurück",
+	"ENG": "Back"
+  }, 
+  
   "SIMULATION_MARKET_MENU":
   {
   	"DE": "Markt",

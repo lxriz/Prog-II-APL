@@ -31,6 +31,7 @@ public abstract class Product
 	public double[] priceWeather;
 	
 	
+	public String name;
 	
 	
 	public boolean age()

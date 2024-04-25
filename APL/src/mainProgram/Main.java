@@ -1,9 +1,12 @@
 package mainProgram;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 import products.*;
 import simulation.Kiosk;
 import simulation.Simulation;
+
 
 
 public class Main 
@@ -411,6 +414,128 @@ public class Main
 		}
 	}
 	
+	private static List<Product> sortStorageExpired(List<Product> unsortedList)
+	{
+		List<Product> sortedList = new ArrayList<>();
+
+		for(Product productunsorted : unsortedList)
+		{
+			boolean inserted = false;
+			for(int i = 0; i<sortedList.size(); i++)
+			{
+				if(productunsorted.expiresDays <= sortedList.get(i).expiresDays)
+				{
+					sortedList.add(i, productunsorted);	
+					inserted = true;
+					break;
+				}
+			}
+			
+			if(!inserted)
+			{
+				sortedList.add(productunsorted);
+			}
+		}
+		
+		return sortedList;
+	}
+	
+	
+	private static List<Product> sortStorageName(List<Product> unsortedList)
+	{
+		List<Product> sortedList = new ArrayList<>();
+
+		for(Product productunsorted : unsortedList)
+		{
+			boolean inserted = false;
+			for(int i = 0; i<sortedList.size(); i++)
+			{
+				if(translation.getText(productunsorted.name).compareTo(translation.getText(sortedList.get(i).name)) < 0)
+				{
+					sortedList.add(i, productunsorted);	
+					inserted = true;
+					break;
+				}
+			}
+			
+			if(!inserted)
+			{
+				sortedList.add(productunsorted);
+			}
+		}
+		
+		return sortedList;
+	}
+	
+	
+	
+	private static void PrintSimulationStorageMenu(Simulation simulation, List<Product> storage)
+	{
+		PrintClearConsole();
+		PrintSimulationHeader(simulation);
+		PrintLine();
+		System.out.println(" " + translation.getText("SIMULATION_STORAGE_MENU"));
+		PrintLine();
+		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_SIZE") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_EXPIRES") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
+		
+		PrintLineDashed();
+		
+		for(Product product : storage)
+		{
+			System.out.println("    " + translation.getText(product.name) + "\t\t" + product.size + "\t" + product.expiresDays + "\t\t" + formateDouble(product.buyPrice) + "€");
+			PrintLineDotted();
+		}
+		
+		PrintLine();
+		System.out.println(" 1| " + translation.getText("SIMULATION_STORAGE_MENU_SORT_NAME"));
+		System.out.println(" 2| " + translation.getText("SIMULATION_STORAGE_MENU_SORT_EXPIRES"));
+		System.out.println();
+		System.out.println(" 0| " + translation.getText("SIMULATION_STORAGE_MENU_BACK"));
+		PrintInput();
+	}
+	
+	
+	private static void SimulationStorageMenu(Simulation simulation)
+	{
+		boolean running = true;
+		
+		List<Product> storage = simulation.kiosk.storage;
+		
+		
+		while(running)
+		{
+			PrintSimulationStorageMenu(simulation, storage);
+			
+			int input = -1;
+			
+			try
+			{
+				input = scan.nextInt();
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+			}
+			
+			
+			switch(input)
+			{
+				case 0:
+					running = false;
+					break;
+				case 1:
+					storage = sortStorageName(simulation.kiosk.storage);
+					break;
+				case 2:
+					storage = sortStorageExpired(simulation.kiosk.storage);
+					break;
+				default:
+					PrintInvalidInput();
+					break;
+			}
+		}
+	}
+	
 	private static void PrintSimulationMarketBuyMenu()
 	{
 		PrintLineDashed();
@@ -738,6 +863,7 @@ public class Main
 					SimulationPricesMenu();
 					break;
 				case 3:
+					SimulationStorageMenu(simulation);
 					break;
 				case 4:
 					SimulationMarketMenu(simulation);

@@ -4,6 +4,8 @@ public class Fries extends Product
 {
 	public Fries()
 	{
+		this.name = "PRODUCT_NAME_FRIES";
+
 		this.expiresDays = 4;
 		this.size = 5;
 		
@@ -15,6 +17,8 @@ public class Fries extends Product
 	
 	public Fries(double buyPrice)
 	{
+		this.name = "PRODUCT_NAME_FRIES";
+
 		this.expiresDays = 4;
 		this.size = 5;
 		
