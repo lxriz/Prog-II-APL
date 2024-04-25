@@ -5,7 +5,6 @@ public abstract class Product
 	// Saves the days until the product expires
 	// expiresDays > 0, good to sell
 	// expiresDays == 0, product has to be thrown away
-	// expiresDays < 0, the product never expires
 	public int expiresDays; 
 	
 		
@@ -39,9 +38,9 @@ public abstract class Product
 		this.expiresDays -= 1;
 		if(this.expiresDays == 0)
 		{
-			return true;
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 }

@@ -1,6 +1,8 @@
 package simulation;
 
 import products.Product;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kiosk 
 {
@@ -11,7 +13,7 @@ public class Kiosk
 	
 	private int usedStorage;
 	public final int storageSize;
-	private Product[] storage;
+	public List<Product> storage;
 	
 	
 	
@@ -24,19 +26,52 @@ public class Kiosk
 		this.cash = 30.00;
 		this.usedStorage = 0;
 		this.storageSize = 30;
-		this.storage = new Product[this.storageSize];		
+		this.storage = new ArrayList<>();		
 	}
 	
-	public boolean setCash(double change)
+	
+	public boolean canPay(double change)
 	{
-		if(this.cash-change >= 0)
+		if(this.cash+change >= 0)
 		{
-			this.cash += change;
 			return true;
 		}
 		
 		return false;
 	}
+	
+	
+	public void changeCash(double change)
+	{
+		if(canPay(cash))
+		{
+			cash += change;
+		}
+	}
+	
+	
+	public boolean canStore(int toStore)
+	{
+		if(this.usedStorage + toStore <= this.storageSize && this.usedStorage + toStore >= 0)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	public void changeStorage(int toStore)
+	{
+		if(canStore(toStore))
+		{
+			usedStorage += toStore;
+		}
+	}
+	
+	
+	
+	
 	
 	public double getCash()
 	{

@@ -1,6 +1,7 @@
 package mainProgram;
 
 import java.util.Scanner;
+import products.*;
 import simulation.Kiosk;
 import simulation.Simulation;
 
@@ -296,9 +297,9 @@ public class Main
 				break;
 			case 2:
 				// SUNNY
-				System.out.println("\t\t\t               \t ooo");
-				System.out.println("\t\t\t   _________   \tooooo");
-				System.out.println("\t\t\t  /         \\ \t ooo");
+				System.out.println("\t\t\t               \t \\|/");
+				System.out.println("\t\t\t   _________   \t-ooo-");
+				System.out.println("\t\t\t  /         \\ \t /|\\");
 				System.out.println("\t\t\t  |   ___   |");
 				System.out.println("\t\t\t  |  |___|  |");
 				System.out.println("\t\t\t  |_________|");
@@ -404,6 +405,7 @@ public class Main
 	{
 		PrintSimulationPricesMenu();
 		
+		// TEMP
 		try
 		{
 			Thread.sleep(5000);
@@ -433,18 +435,49 @@ public class Main
 		}
 		catch(Exception e)
 		{
-			scan.nextLine();
 			PrintInvalidInput();
 			return 0;
 		}
-		
-		if(input < 0 || input > 6)
+				
+		if(input < 0)
 		{
 			PrintInvalidInput();
 			return 0;
 		}
 		
 		return input;
+	}
+	
+	private static void PrintStorageError()
+	{
+		PrintLineDotted();
+		System.out.println(" " + translation.getText("SIMULATION_MARKET_MENU_ERROR_STORAGE"));
+		PrintLineDotted();
+		
+		try
+		{
+			Thread.sleep(800);
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+	
+	private static void PrintCashError()
+	{
+		PrintLineDotted();
+		System.out.println(" " + translation.getText("SIMULATION_MARKET_MENU_ERROR_CASH"));
+		PrintLineDotted();
+		
+		try
+		{
+			Thread.sleep(800);
+		}
+		catch(Exception e)
+		{
+			
+		}
 	}
 	
 	private static void PrintSimulationMarketMenu(Simulation simulation)
@@ -503,18 +536,169 @@ public class Main
 			{
 				case 0:
 					running = false;
-					break;
-				case 1:
-					amount = SimulationMarketBuyMenu();
-					break;
-				case 2:
 					
 					break;
+					
+				case 1:
+					amount = SimulationMarketBuyMenu();
+					if(simulation.kiosk.canPay(-amount * simulation.day.market.cigarettesPrice))
+					{
+						if(simulation.kiosk.canStore(amount * simulation.day.market.cigarettes.size))
+						{
+							simulation.kiosk.changeCash(-amount * simulation.day.market.cigarettesPrice);
+							simulation.kiosk.changeStorage(amount * simulation.day.market.cigarettes.size);
+							
+							for(int i = 0; i < amount; i++)
+							{
+								simulation.kiosk.storage.add(new Cigarettes(simulation.day.market.cigarettesPrice));
+							}
+							continue;
+						}
+						else
+						{
+							PrintStorageError();
+						}
+					}
+					else
+					{
+						PrintCashError();
+					}
+					break;
+					
+				case 2:
+					amount = SimulationMarketBuyMenu();
+					if(simulation.kiosk.canPay(-amount * simulation.day.market.friesPrice))
+					{
+						if(simulation.kiosk.canStore(amount * simulation.day.market.fries.size))
+						{
+							simulation.kiosk.changeCash(-amount * simulation.day.market.friesPrice);
+							simulation.kiosk.changeStorage(amount * simulation.day.market.fries.size);
+							
+							for(int i = 0; i < amount; i++)
+							{
+								simulation.kiosk.storage.add(new Fries(simulation.day.market.friesPrice));
+							}
+							continue;
+						}
+						else
+						{
+							PrintStorageError();
+						}
+					}
+					else
+					{
+						PrintCashError();
+					}
+					break;
+					
+				case 3:
+					amount = SimulationMarketBuyMenu();
+					if(simulation.kiosk.canPay(-amount * simulation.day.market.gumPrice))
+					{
+						if(simulation.kiosk.canStore(amount * simulation.day.market.gum.size))
+						{
+							simulation.kiosk.changeCash(-amount * simulation.day.market.gumPrice);
+							simulation.kiosk.changeStorage(amount * simulation.day.market.gum.size);
+							
+							for(int i = 0; i < amount; i++)
+							{
+								simulation.kiosk.storage.add(new Gum(simulation.day.market.gumPrice));
+							}
+							continue;
+						}
+						else
+						{
+							PrintStorageError();
+						}
+					}
+					else
+					{
+						PrintCashError();
+					}
+					break;
+					
+				case 4:
+					amount = SimulationMarketBuyMenu();
+					if(simulation.kiosk.canPay(-amount * simulation.day.market.iceCreamPrice))
+					{
+						if(simulation.kiosk.canStore(amount * simulation.day.market.iceCream.size))
+						{
+							simulation.kiosk.changeCash(-amount * simulation.day.market.iceCreamPrice);
+							simulation.kiosk.changeStorage(amount * simulation.day.market.iceCream.size);
+							
+							for(int i = 0; i < amount; i++)
+							{
+								simulation.kiosk.storage.add(new IceCream(simulation.day.market.iceCreamPrice));
+							}
+							continue;
+						}
+						else
+						{
+							PrintStorageError();
+						}
+					}
+					else
+					{
+						PrintCashError();
+					}
+					break;
+					
+				case 5:
+					amount = SimulationMarketBuyMenu();
+					if(simulation.kiosk.canPay(-amount * simulation.day.market.lemonadePrice))
+					{
+						if(simulation.kiosk.canStore(amount * simulation.day.market.lemonade.size))
+						{
+							simulation.kiosk.changeCash(-amount * simulation.day.market.lemonadePrice);
+							simulation.kiosk.changeStorage(amount * simulation.day.market.lemonade.size);
+							
+							for(int i = 0; i < amount; i++)
+							{
+								simulation.kiosk.storage.add(new Lemonade(simulation.day.market.lemonadePrice));
+							}
+							continue;
+						}
+						else
+						{
+							PrintStorageError();
+						}
+					}
+					else
+					{
+						PrintCashError();
+					}
+					break;
+					
+				case 6:
+					amount = SimulationMarketBuyMenu();
+					if(simulation.kiosk.canPay(-amount * simulation.day.market.newspaperPrice))
+					{
+						if(simulation.kiosk.canStore(amount * simulation.day.market.newspaper.size))
+						{
+							simulation.kiosk.changeCash(-amount * simulation.day.market.newspaperPrice);
+							simulation.kiosk.changeStorage(amount * simulation.day.market.newspaper.size);
+							
+							for(int i = 0; i < amount; i++)
+							{
+								simulation.kiosk.storage.add(new Newspaper(simulation.day.market.newspaperPrice));
+							}
+							continue;
+						}
+						else
+						{
+							PrintStorageError();
+						}
+					}
+					else
+					{
+						PrintCashError();
+					}
+					break;
+					
 				default:
 					PrintInvalidInput();
 					break;
-			}
-			
+			}	
 		}
 	}
 	
@@ -694,7 +878,6 @@ public class Main
 	public static void main(String[] args)
 	{
 		//PrintStartScreen();
-		PrintClearConsole();
 		MainMenu();
 	}
 }

@@ -1,6 +1,9 @@
 package simulation;
 
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import products.*;
 
 public class Simulation 
 {
@@ -62,6 +65,17 @@ public class Simulation
 		{
 			this.currentDay += 1;
 			day = new Day();
+			
+			
+			for(int i = 0; i < kiosk.storage.size(); i++)
+			{			
+				if(!kiosk.storage.get(i).age())
+				{
+					kiosk.changeStorage(-kiosk.storage.get(i).size);
+					kiosk.storage.remove(i);
+					i--;
+				}		
+			}
 		}
 	}
 }

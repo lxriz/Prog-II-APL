@@ -257,7 +257,7 @@
 	"ENG": "How much do you want to buy?"
   }, 
   
-  "SIMULATION_MARKET_MENU_ERROR_MONEY":
+  "SIMULATION_MARKET_MENU_ERROR_CASH":
   {
   	"DE": "Du hast nicht genug Geld!",
 	"ENG": "You don't have enough money!"
@@ -265,8 +265,8 @@
   
   "SIMULATION_MARKET_MENU_ERROR_STORAGE":
   {
-  	"DE": "Dein Lager ist voll!",
-	"ENG": "Your storage is full!"
+  	"DE": "Das würde die Lagerkapazität überschriten!",
+	"ENG": "This would exceed your storage capacity!"
   }, 
   
   "DAY_1":
