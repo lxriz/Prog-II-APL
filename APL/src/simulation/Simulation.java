@@ -18,22 +18,6 @@ public class Simulation
 			Random r = new Random();
 			this.weather = (int)(r.nextInt(3));
 			market = new Market(this.weather);
-			
-			
-			double[] prices = market.getPrices();
-			for(int i = 0; i<6; i++)
-			{
-				System.out.println(prices[i]);
-			}
-			
-			try
-			{
-				Thread.sleep(8000);
-			}
-			catch(Exception e)
-			{
-				
-			}
 		}
 	}
 	

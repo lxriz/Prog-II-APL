@@ -144,6 +144,8 @@ public class Main
 			
 		}
 		
+		PrintClearConsole();
+		
 	}
 	
 	
@@ -406,6 +408,47 @@ public class Main
 	}
 	
 	
+	private static void PrintSimulationMarketMenu(Simulation simulation)
+	{
+		PrintClearConsole();
+		PrintLine();
+		System.out.println(" " + translation.getText("SIMULATION_MARKET_MENU"));
+		PrintLine();
+		System.out.println();
+		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_SIZE") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_EXPIRES") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
+		PrintLineDashed();
+		System.out.println(" 1| " + translation.getText("PRODUCT_NAME_CIGARETTES") + "\t" +simulation.day.market.cigarettes.size + "\t" + simulation.day.market.cigarettes.expiresDays + " " + translation.getText("SIMULATION_MARKET_MENU_DAYS") + "\t" + simulation.day.market.cigarettesPrice);
+		PrintInput();
+	}
+	
+	
+	private static void SimulationMarketMenu(Simulation simulation)
+	{
+		boolean running = true;
+		Scanner scan = new Scanner(System.in);
+		
+		
+		while(running)
+		{
+			PrintSimulationMarketMenu(simulation);
+			
+			int input = -1;
+			try
+			{
+				input = scan.nextInt();
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+			}
+			
+			// TEMP
+			running = false;
+			
+		}
+	}
+	
+	
 	private static void Simulation()
 	{
 		boolean running = true;
@@ -449,7 +492,9 @@ public class Main
 					SimulationPricesMenu();
 					break;
 				case 3:
-					
+					break;
+				case 4:
+					SimulationMarketMenu(simulation);
 					break;
 				default:
 					PrintInvalidInput();
@@ -509,7 +554,6 @@ public class Main
 					break;
 				case 2:
 					ChangeLanguageMenu();
-					PrintClearConsole();
 					break;
 				case 3:
 					HighscoresMenu();

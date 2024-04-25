@@ -1,6 +1,7 @@
 package simulation;
 
 import java.util.Random;
+import products.*;
 
 public class Market 
 {
@@ -14,33 +15,15 @@ public class Market
 	public final double newspaperPrice;
 	
 	
-	// Used as an anchor for price calculations
-	// Prices in euro
-	public final double cigarettesBasePrice = 6.50;
-	public final double friesBasePrice = 2.50;
-	public final double gumBasePrice = 0.30;
-	public final double iceCreamBasePrice = 1.00;
-	public final double lemonadeBasePrice = 0.85;
-	public final double newspaperBasePrice = 0.60;
+	// Objects
+	public Cigarettes cigarettes;
+	public Fries fries;
+	public Gum gum;
+	public IceCream iceCream;
+	public Lemonade lemonade;
+	public Newspaper newspaper;
 	
 	
-	// Used for random Price Variation on base price
-	// Max percent of variation on base price
-	public final double cigarettesBasePriceVariation = 0.08;
-	public final double friesBasePriceVariation = 0.18;
-	public final double gumBasePriceVariation = 0.30;
-	public final double iceCreamBasePriceVariation = 0.12;
-	public final double lemonadeBasePriceVariation = 0.24;
-	public final double newspaperBasePriceVariation = 0.40;
-	
-	
-	// Saves the weather price variation  
-	public final double[] cigarettesPriceWeather = {0.2, 0, -0.2};
-	public final double[] friesPriceWeather = {0.2, 0, -0.2};
-	public final double[] gumPriceWeather = {0.2, 0, -0.2};
-	public final double[] iceCreamPriceWeather = {0.2, 0, -0.2};
-	public final double[] lemonadePriceWeather = {0.2, 0, -0.2};
-	public final double[] newspaperPriceWeather = {0.2, 0, -0.2};
 
 	private Random r = new Random();
 
@@ -66,12 +49,19 @@ public class Market
 		// 1 - Cloudy, no impact on base prices
 		// 2 - Sunny 
 		
-		cigarettesPrice = calculatePriceVariation(calculatePriceWeather(cigarettesBasePrice, cigarettesPriceWeather[weather]), cigarettesBasePriceVariation);
-		friesPrice = calculatePriceVariation(calculatePriceWeather(friesBasePrice, friesPriceWeather[weather]), friesBasePriceVariation);
-		gumPrice = calculatePriceVariation(calculatePriceWeather(gumBasePrice, gumPriceWeather[weather]), gumBasePriceVariation);
-		iceCreamPrice = calculatePriceVariation(calculatePriceWeather(iceCreamBasePrice, iceCreamPriceWeather[weather]), iceCreamBasePriceVariation);
-		lemonadePrice = calculatePriceVariation(calculatePriceWeather(lemonadeBasePrice, lemonadePriceWeather[weather]), lemonadeBasePriceVariation);
-		newspaperPrice = calculatePriceVariation(calculatePriceWeather(newspaperBasePrice, newspaperPriceWeather[weather]), newspaperBasePriceVariation);
+		cigarettes = new Cigarettes();
+		fries = new Fries();
+		gum = new Gum();
+		iceCream = new IceCream();
+		lemonade = new Lemonade();
+		newspaper = new Newspaper();
+		
+		cigarettesPrice = calculatePriceVariation(calculatePriceWeather(cigarettes.basePrice, cigarettes.priceWeather[weather]), cigarettes.basePriceVariation);
+		friesPrice = calculatePriceVariation(calculatePriceWeather(fries.basePrice, fries.priceWeather[weather]), fries.basePriceVariation);
+		gumPrice = calculatePriceVariation(calculatePriceWeather(gum.basePrice, gum.priceWeather[weather]), gum.basePriceVariation);
+		iceCreamPrice = calculatePriceVariation(calculatePriceWeather(iceCream.basePrice, iceCream.priceWeather[weather]), iceCream.basePriceVariation);
+		lemonadePrice = calculatePriceVariation(calculatePriceWeather(lemonade.basePrice, lemonade.priceWeather[weather]), lemonade.basePriceVariation);
+		newspaperPrice = calculatePriceVariation(calculatePriceWeather(newspaper.basePrice, newspaper.priceWeather[weather]), newspaper.basePriceVariation);
 	}
 	
 	public double[] getPrices()

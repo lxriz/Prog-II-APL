@@ -13,10 +13,24 @@ public abstract class Product
 	// The value is simplified with no real measurement
 	public int size; 
 	
-	//
-	public float buyPrice; 
 	
-	// WETTER VARIABLEN
+	
+	//
+	public double buyPrice; 
+	
+	
+	
+	// Used as an anchor for price calculations
+	// Prices in euro
+	public double basePrice;
+	
+	// Used for random Price Variation on base price
+	// Max percent of variation on base price
+	public double basePriceVariation;
+	
+	// Saves the weather price variation  
+	public double[] priceWeather;
+	
 	
 	
 	

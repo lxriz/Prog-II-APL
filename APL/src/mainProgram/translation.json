@@ -197,6 +197,41 @@
 	"ENG": "Current prices"
   }, 
   
+  "SIMULATION_MARKET_MENU":
+  {
+  	"DE": "Markt",
+	"ENG": "Market"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_HEADER_NAME":
+  {
+  	"DE": "Name",
+	"ENG": "Name"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_HEADER_SIZE":
+  {
+  	"DE": "Größe",
+	"ENG": "Size"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_HEADER_EXPIRES":
+  {
+  	"DE": "Haltbarkeit",
+	"ENG": "Shelf life"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_HEADER_PRICE":
+  {
+  	"DE": "Preis",
+	"ENG": "Price"
+  }, 
+  
+  "SIMULATION_MARKET_MENU_DAYS":
+  {
+  	"DE": "Tage",
+	"ENG": "Days"
+  }, 
   
   "DAY_1":
   {
