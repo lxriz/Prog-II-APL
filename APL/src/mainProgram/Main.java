@@ -8,6 +8,8 @@ import simulation.Simulation;
 
 public class Main 
 {	
+	private static Scanner scan = new Scanner(System.in);
+	
 	private static Translation translation = new Translation();
 	
 	
@@ -108,9 +110,7 @@ public class Main
 	private static void ChangeLanguageMenu()
 	{
 		boolean running = true;
-		
-		Scanner scan = new Scanner(System.in);
-		
+				
 		
 		while(running)
 		{
@@ -178,9 +178,7 @@ public class Main
 	
 	
 	private static void HighscoresMenu()
-	{
-		Scanner scan = new Scanner(System.in);
-		
+	{		
 		PrintHighscoresMenu();
 		scan.nextLine();
 	}
@@ -203,7 +201,6 @@ public class Main
 	
 	private static boolean ExitVerifyMenu()
 	{
-		Scanner scan = new Scanner(System.in);
 		boolean running = true;
 	
 		while(running)
@@ -247,8 +244,6 @@ public class Main
 	
 	private static String EnterUsernameMenu()
 	{
-		Scanner scan = new Scanner(System.in);
-
 		PrintClearConsole();
 		String input = "";
 		
@@ -425,7 +420,6 @@ public class Main
 	
 	private static int SimulationMarketBuyMenu()
 	{
-		Scanner scan = new Scanner(System.in);
 		PrintSimulationMarketBuyMenu();
 		
 		int input = -1;
@@ -513,9 +507,7 @@ public class Main
 	
 	private static void SimulationMarketMenu(Simulation simulation)
 	{
-		boolean running = true;
-		Scanner scan = new Scanner(System.in);
-		
+		boolean running = true;		
 		
 		while(running)
 		{
@@ -706,9 +698,7 @@ public class Main
 	private static void Simulation()
 	{
 		boolean running = true;
-		
-		Scanner scan = new Scanner(System.in);
-				
+						
 		Simulation simulation = new Simulation(new Kiosk(EnterUsernameMenu()));
 
 		
@@ -782,7 +772,6 @@ public class Main
 	{
 		boolean running = true;
 		
-		Scanner scan = new Scanner(System.in);
 		while(running)
 		{
 			PrintClearConsole();
@@ -818,6 +807,7 @@ public class Main
 				case 0:
 					PrintClearConsole();
 					running = false;
+					scan.close();
 					break;
 				default:
 					PrintInvalidInput();
