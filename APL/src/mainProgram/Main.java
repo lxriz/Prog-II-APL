@@ -364,6 +364,19 @@ public class Main
 		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + simulation.kiosk.getUsedStorage() + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + simulation.kiosk.storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
 		PrintLine();
 		
+		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_CIGARETTES") + " X " + translation.getText("PRODUCT_NAME_CIGARETTES"));
+		PrintLineDashed();
+		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_FRIES") + " X " + translation.getText("PRODUCT_NAME_FRIES"));
+		PrintLineDashed();		
+		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_GUM") + " X " + translation.getText("PRODUCT_NAME_GUM"));
+		PrintLineDashed();
+		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_ICE_CREAM") + " X " + translation.getText("PRODUCT_NAME_ICE_CREAM"));
+		PrintLineDashed();
+		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_LEMONADE") + " X " + translation.getText("PRODUCT_NAME_LEMONADE"));
+		PrintLineDashed();
+		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_NEWSPAPER") + " X " + translation.getText("PRODUCT_NAME_NEWSPAPER"));
+		PrintLine();
+		
 	}
 	
 	
@@ -566,7 +579,6 @@ public class Main
 	}
 	
 	
-	
 	private static void PrintSimulationStorageMenu(Simulation simulation, List<Product> storage)
 	{
 		PrintClearConsole();
@@ -574,7 +586,8 @@ public class Main
 		PrintLine();
 		System.out.println(" " + translation.getText("SIMULATION_STORAGE_MENU"));
 		PrintLine();
-		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_SIZE") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_EXPIRES") + "\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
+	
+		System.out.println("    " + translation.getText("SIMULATION_STORAGE_MENU_HEADER") + "\t\t" + translation.getText("SIMULATION_STORAGE_MENU_SIZE") + "\t" + translation.getText("SIMULATION_STORAGE_MENU_EXPIRES") + "\t" + translation.getText("SIMULATION_STORAGE_MENU_BUY_PRICE"));
 		
 		PrintLineDashed();
 		
@@ -626,6 +639,8 @@ public class Main
 					break;
 				case 2:
 					storage = sortStorageExpired(simulation.kiosk.storage);
+					break;
+				case 3:
 					break;
 				default:
 					PrintInvalidInput();
@@ -1091,7 +1106,7 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-		//PrintStartScreen();
+		PrintStartScreen();
 		MainMenu();
 	}
 }

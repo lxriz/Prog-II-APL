@@ -104,4 +104,20 @@ public class Kiosk
 		return this.usedStorage;
 	}
 	
+	
+	public int countProduct(String name)
+	{
+		int sum = 0;
+		
+		for(Product product : storage)
+		{
+			if(name == product.name)
+			{
+				sum++;
+			}
+		}
+		
+		return sum;
+	}
+	
 }
