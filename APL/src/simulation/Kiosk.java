@@ -15,19 +15,43 @@ public class Kiosk
 	public final int storageSize;
 	public List<Product> storage;
 	
+	private double[] prices = new double[6];
+	
 	
 	
 	public Kiosk(String ownerName)
 	{
-		this.ownerName = ownerName;
-		
-		// (Possible difficulty levels implementation)
-		
+		this.ownerName = ownerName;		
 		this.cash = 30.00;
 		this.usedStorage = 0;
-		this.storageSize = 30;
+		this.storageSize = 50;
 		this.storage = new ArrayList<>();		
 	}
+	
+	
+	public boolean setPrice(int index, double newPrice)
+	{
+		index--;
+		if(newPrice >= 0 && index >= 0 && index < prices.length)
+		{
+			prices[index] = newPrice;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	public double getPrice(int index)
+	{
+		if(index-1 >= 0 && index-1 < prices.length)
+		{
+			return prices[index-1];
+		}
+		
+		return -1;
+	}
+	
 	
 	
 	public boolean canPay(double change)
@@ -41,7 +65,7 @@ public class Kiosk
 	}
 	
 	
-	public void changeCash(double change)
+	public void setCash(double change)
 	{
 		if(canPay(cash))
 		{
@@ -61,16 +85,13 @@ public class Kiosk
 	}
 	
 	
-	public void changeStorage(int toStore)
+	public void setStorage(int toStore)
 	{
 		if(canStore(toStore))
 		{
 			usedStorage += toStore;
 		}
 	}
-	
-	
-	
 	
 	
 	public double getCash()

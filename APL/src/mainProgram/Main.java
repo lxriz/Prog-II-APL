@@ -386,33 +386,131 @@ public class Main
 		PrintInput();
 	}
 	
-	
-	private static void PrintSimulationPricesMenu()
+	private static void PrintPriceError()
 	{
-		PrintClearConsole();
-		PrintLine();
-		System.out.println(" " + translation.getText("SIMULATION_PRICES_MENU"));
-		PrintLine();
-		PrintLineDashed();
+		PrintLineDotted();
+		System.out.println(" " + translation.getText("SIMULATION_PRICE_MENU_ERROR_PRICE"));
+		PrintLineDotted();
 		
-		PrintInput();
-		
-	}
-	
-	private static void SimulationPricesMenu()
-	{
-		PrintSimulationPricesMenu();
-		
-		// TEMP
 		try
 		{
-			Thread.sleep(5000);
+			Thread.sleep(800);
 		}
 		catch(Exception e)
 		{
 			
 		}
 	}
+	
+	
+	private static void PrintSimulationPriceChangeMenu()
+	{
+		PrintLineDashed();
+		System.out.println(" " + translation.getText("SIMULATION_PRICES_MENU_QUESTION"));
+		PrintInput();
+	}
+	
+	
+	private static void SimulationPriceChangeMenu(int index, Simulation simulation)
+	{
+		PrintSimulationPriceChangeMenu();
+		
+		double input = -1;
+		try
+		{
+			input = scan.nextDouble();
+		}
+		catch(Exception e)
+		{
+			scan.nextLine();
+			PrintInvalidInput();
+			return;
+		}
+		
+		if(!simulation.kiosk.setPrice(index, input))
+		{
+			PrintPriceError();
+		}
+		
+	}
+	
+	
+	private static void PrintSimulationPricesMenu(Simulation simulation)
+	{
+		PrintClearConsole();
+		PrintSimulationHeader(simulation);
+		PrintLine();
+		System.out.println(" " + translation.getText("SIMULATION_PRICES_MENU"));
+		PrintLine();
+		System.out.println("    " + translation.getText("SIMULATION_MARKET_MENU_HEADER_NAME") + "\t\t\t\t\t" + translation.getText("SIMULATION_MARKET_MENU_HEADER_PRICE"));
+		PrintLineDashed();
+		System.out.println(" 1| " + translation.getText("PRODUCT_NAME_CIGARETTES") + "\t\t\t\t\t" + formateDouble(simulation.kiosk.getPrice(1)) + "€");
+		PrintLineDotted();
+		System.out.println(" 2| " + translation.getText("PRODUCT_NAME_FRIES") + "\t\t\t\t\t" + formateDouble(simulation.kiosk.getPrice(2)) + "€");
+		PrintLineDotted();
+		System.out.println(" 3| " + translation.getText("PRODUCT_NAME_GUM") + "\t\t\t\t\t" + formateDouble(simulation.kiosk.getPrice(3)) + "€");
+		PrintLineDotted();
+		System.out.println(" 4| " + translation.getText("PRODUCT_NAME_ICE_CREAM") + "\t\t\t\t\t" + formateDouble(simulation.kiosk.getPrice(4)) + "€");
+		PrintLineDotted();
+		System.out.println(" 5| " + translation.getText("PRODUCT_NAME_LEMONADE") + "\t\t\t\t\t" + formateDouble(simulation.kiosk.getPrice(5)) + "€");
+		PrintLineDotted();
+		System.out.println(" 6| " + translation.getText("PRODUCT_NAME_NEWSPAPER") + "\t\t\t\t\t" + formateDouble(simulation.kiosk.getPrice(6)) + "€");
+		PrintLineDotted();
+		System.out.println();
+		System.out.println(" 0| " + translation.getText("SIMULATION_PRICES_MENU_BACK"));
+		
+		PrintInput();
+	}
+	
+	
+	private static void SimulationPricesMenu(Simulation simulation)
+	{
+		boolean running = true;
+		while(running)
+		{
+			PrintSimulationPricesMenu(simulation);
+					
+			int input = -1;
+			try
+			{
+				input = scan.nextInt();
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+			}
+			
+			
+			switch(input)
+			{
+				case 0:
+					running = false;
+					break;
+				case 1:
+					SimulationPriceChangeMenu(input, simulation);
+					break;
+				case 2:
+					SimulationPriceChangeMenu(input, simulation);
+					break;
+				case 3:
+					SimulationPriceChangeMenu(input, simulation);
+					break;
+				case 4:
+					SimulationPriceChangeMenu(input, simulation);
+					break;
+				case 5:
+					SimulationPriceChangeMenu(input, simulation);
+					break;
+				case 6:
+					SimulationPriceChangeMenu(input, simulation);
+					break;
+				default:
+					PrintInvalidInput();
+					break;
+			}
+		}
+	}
+	
 	
 	private static List<Product> sortStorageExpired(List<Product> unsortedList)
 	{
@@ -482,7 +580,7 @@ public class Main
 		
 		for(Product product : storage)
 		{
-			System.out.println("    " + translation.getText(product.name) + "\t\t" + product.size + "\t" + product.expiresDays + "\t\t" + formateDouble(product.buyPrice) + "€");
+			System.out.println("    " + translation.getText(product.name) + "\t\t" + product.size + "\t" + product.expiresDays + " "+ "" + translation.getText("SIMULATION_STORAGE_MENU_DAY") + "\t\t" + formateDouble(product.buyPrice) + "€");
 			PrintLineDotted();
 		}
 		
@@ -662,8 +760,8 @@ public class Main
 					{
 						if(simulation.kiosk.canStore(amount * simulation.day.market.cigarettes.size))
 						{
-							simulation.kiosk.changeCash(-amount * simulation.day.market.cigarettesPrice);
-							simulation.kiosk.changeStorage(amount * simulation.day.market.cigarettes.size);
+							simulation.kiosk.setCash(-amount * simulation.day.market.cigarettesPrice);
+							simulation.kiosk.setStorage(amount * simulation.day.market.cigarettes.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
@@ -688,8 +786,8 @@ public class Main
 					{
 						if(simulation.kiosk.canStore(amount * simulation.day.market.fries.size))
 						{
-							simulation.kiosk.changeCash(-amount * simulation.day.market.friesPrice);
-							simulation.kiosk.changeStorage(amount * simulation.day.market.fries.size);
+							simulation.kiosk.setCash(-amount * simulation.day.market.friesPrice);
+							simulation.kiosk.setStorage(amount * simulation.day.market.fries.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
@@ -714,8 +812,8 @@ public class Main
 					{
 						if(simulation.kiosk.canStore(amount * simulation.day.market.gum.size))
 						{
-							simulation.kiosk.changeCash(-amount * simulation.day.market.gumPrice);
-							simulation.kiosk.changeStorage(amount * simulation.day.market.gum.size);
+							simulation.kiosk.setCash(-amount * simulation.day.market.gumPrice);
+							simulation.kiosk.setStorage(amount * simulation.day.market.gum.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
@@ -740,8 +838,8 @@ public class Main
 					{
 						if(simulation.kiosk.canStore(amount * simulation.day.market.iceCream.size))
 						{
-							simulation.kiosk.changeCash(-amount * simulation.day.market.iceCreamPrice);
-							simulation.kiosk.changeStorage(amount * simulation.day.market.iceCream.size);
+							simulation.kiosk.setCash(-amount * simulation.day.market.iceCreamPrice);
+							simulation.kiosk.setStorage(amount * simulation.day.market.iceCream.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
@@ -766,8 +864,8 @@ public class Main
 					{
 						if(simulation.kiosk.canStore(amount * simulation.day.market.lemonade.size))
 						{
-							simulation.kiosk.changeCash(-amount * simulation.day.market.lemonadePrice);
-							simulation.kiosk.changeStorage(amount * simulation.day.market.lemonade.size);
+							simulation.kiosk.setCash(-amount * simulation.day.market.lemonadePrice);
+							simulation.kiosk.setStorage(amount * simulation.day.market.lemonade.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
@@ -792,8 +890,8 @@ public class Main
 					{
 						if(simulation.kiosk.canStore(amount * simulation.day.market.newspaper.size))
 						{
-							simulation.kiosk.changeCash(-amount * simulation.day.market.newspaperPrice);
-							simulation.kiosk.changeStorage(amount * simulation.day.market.newspaper.size);
+							simulation.kiosk.setCash(-amount * simulation.day.market.newspaperPrice);
+							simulation.kiosk.setStorage(amount * simulation.day.market.newspaper.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
@@ -860,7 +958,7 @@ public class Main
 					simulation.nextDay();
 					break;
 				case 2:
-					SimulationPricesMenu();
+					SimulationPricesMenu(simulation);
 					break;
 				case 3:
 					SimulationStorageMenu(simulation);

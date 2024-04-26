@@ -71,7 +71,7 @@ public class Simulation
 			{			
 				if(!kiosk.storage.get(i).age())
 				{
-					kiosk.changeStorage(-kiosk.storage.get(i).size);
+					kiosk.setStorage(-kiosk.storage.get(i).size);
 					kiosk.storage.remove(i);
 					i--;
 				}		

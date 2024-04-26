@@ -199,8 +199,26 @@
   
   "SIMULATION_PRICES_MENU":
   {
-  	"DE": "Aktuelle Preise",
-	"ENG": "Current prices"
+  	"DE": "Preise anpassen",
+	"ENG": "Change prices"
+  }, 
+  
+  "SIMULATION_PRICES_MENU_BACK":
+  {
+  	"DE": "Zurück",
+	"ENG": "Back"
+  }, 
+  
+  "SIMULATION_PRICES_MENU_QUESTION":
+  {
+  	"DE": "Was ist der neue Preis?",
+	"ENG": "What is the new price?"
+  }, 
+  
+  "SIMULATION_PRICE_MENU_ERROR_PRICE":
+  {
+  	"DE": "Ungültiger Preis!",
+	"ENG": "Invalid price!"
   }, 
   
   "SIMULATION_STORAGE_MENU":
@@ -231,6 +249,12 @@
   {
   	"DE": "Einkaufspreis",
 	"ENG": "Buy price"
+  }, 
+  
+  "SIMULATION_STORAGE_MENU_DAY":
+  {
+  	"DE": "Tage",
+	"ENG": "Days"
   }, 
   
   "SIMULATION_STORAGE_MENU_SORT_NAME":
