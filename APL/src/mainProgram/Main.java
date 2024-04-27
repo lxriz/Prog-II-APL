@@ -361,7 +361,7 @@ public class Main
 		PrintLineDashed();		
 		System.out.println("  | " + translation.getText("SIMULATION_HEADER_MONEY") + " |\t\t\t" + formateDouble(simulation.kiosk.getCash()) + "€");
 		PrintLineDashed();
-		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + simulation.kiosk.getUsedStorage() + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + simulation.kiosk.storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
+		System.out.println("  | " + translation.getText("SIMULATION_HEADER_STORAGE_1") + " |\t\t\t" + simulation.kiosk.getUsedStorageSize() + " " + translation.getText("SIMULATION_HEADER_STORAGE_2") + " " + simulation.kiosk.storageSize + " " + translation.getText("SIMULATION_HEADER_STORAGE_3"));
 		PrintLine();
 		
 		System.out.println("    " + simulation.kiosk.countProduct("PRODUCT_NAME_CIGARETTES") + " X " + translation.getText("PRODUCT_NAME_CIGARETTES"));
@@ -656,6 +656,7 @@ public class Main
 		PrintInput();
 	}
 	
+	
 	private static int SimulationMarketBuyMenu()
 	{
 		PrintSimulationMarketBuyMenu();
@@ -776,11 +777,10 @@ public class Main
 						if(simulation.kiosk.canStore(amount * simulation.day.market.cigarettes.size))
 						{
 							simulation.kiosk.setCash(-amount * simulation.day.market.cigarettesPrice);
-							simulation.kiosk.setStorage(amount * simulation.day.market.cigarettes.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
-								simulation.kiosk.storage.add(new Cigarettes(simulation.day.market.cigarettesPrice));
+								simulation.kiosk.addStorage(new Cigarettes(simulation.day.market.cigarettesPrice));
 							}
 							continue;
 						}
@@ -802,11 +802,10 @@ public class Main
 						if(simulation.kiosk.canStore(amount * simulation.day.market.fries.size))
 						{
 							simulation.kiosk.setCash(-amount * simulation.day.market.friesPrice);
-							simulation.kiosk.setStorage(amount * simulation.day.market.fries.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
-								simulation.kiosk.storage.add(new Fries(simulation.day.market.friesPrice));
+								simulation.kiosk.addStorage(new Fries(simulation.day.market.friesPrice));
 							}
 							continue;
 						}
@@ -828,11 +827,10 @@ public class Main
 						if(simulation.kiosk.canStore(amount * simulation.day.market.gum.size))
 						{
 							simulation.kiosk.setCash(-amount * simulation.day.market.gumPrice);
-							simulation.kiosk.setStorage(amount * simulation.day.market.gum.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
-								simulation.kiosk.storage.add(new Gum(simulation.day.market.gumPrice));
+								simulation.kiosk.addStorage(new Gum(simulation.day.market.gumPrice));
 							}
 							continue;
 						}
@@ -854,11 +852,10 @@ public class Main
 						if(simulation.kiosk.canStore(amount * simulation.day.market.iceCream.size))
 						{
 							simulation.kiosk.setCash(-amount * simulation.day.market.iceCreamPrice);
-							simulation.kiosk.setStorage(amount * simulation.day.market.iceCream.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
-								simulation.kiosk.storage.add(new IceCream(simulation.day.market.iceCreamPrice));
+								simulation.kiosk.addStorage(new IceCream(simulation.day.market.iceCreamPrice));
 							}
 							continue;
 						}
@@ -880,11 +877,10 @@ public class Main
 						if(simulation.kiosk.canStore(amount * simulation.day.market.lemonade.size))
 						{
 							simulation.kiosk.setCash(-amount * simulation.day.market.lemonadePrice);
-							simulation.kiosk.setStorage(amount * simulation.day.market.lemonade.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
-								simulation.kiosk.storage.add(new Lemonade(simulation.day.market.lemonadePrice));
+								simulation.kiosk.addStorage(new Lemonade(simulation.day.market.lemonadePrice));
 							}
 							continue;
 						}
@@ -906,11 +902,10 @@ public class Main
 						if(simulation.kiosk.canStore(amount * simulation.day.market.newspaper.size))
 						{
 							simulation.kiosk.setCash(-amount * simulation.day.market.newspaperPrice);
-							simulation.kiosk.setStorage(amount * simulation.day.market.newspaper.size);
 							
 							for(int i = 0; i < amount; i++)
 							{
-								simulation.kiosk.storage.add(new Newspaper(simulation.day.market.newspaperPrice));
+								simulation.kiosk.addStorage(new Newspaper(simulation.day.market.newspaperPrice));
 							}
 							continue;
 						}
@@ -1101,7 +1096,7 @@ public class Main
 	
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Main Funktion
+	// Main Function
 	
 	
 	public static void main(String[] args)

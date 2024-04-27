@@ -24,7 +24,7 @@ public class Kiosk
 		this.ownerName = ownerName;		
 		this.cash = 30.00;
 		this.usedStorage = 0;
-		this.storageSize = 50;
+		this.storageSize = 100;
 		this.storage = new ArrayList<>();		
 	}
 	
@@ -44,9 +44,10 @@ public class Kiosk
 	
 	public double getPrice(int index)
 	{
-		if(index-1 >= 0 && index-1 < prices.length)
+		index --;
+		if(index >= 0 && index < prices.length)
 		{
-			return prices[index-1];
+			return prices[index];
 		}
 		
 		return -1;
@@ -74,34 +75,9 @@ public class Kiosk
 	}
 	
 	
-	public boolean canStore(int toStore)
-	{
-		if(this.usedStorage + toStore <= this.storageSize && this.usedStorage + toStore >= 0)
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
-	
-	public void setStorage(int toStore)
-	{
-		if(canStore(toStore))
-		{
-			usedStorage += toStore;
-		}
-	}
-	
-	
 	public double getCash()
 	{
 		return this.cash;
-	}
-	
-	public int getUsedStorage()
-	{
-		return this.usedStorage;
 	}
 	
 	
@@ -120,4 +96,79 @@ public class Kiosk
 		return sum;
 	}
 	
+	
+	public boolean canStore(int toStore)
+	{
+		if(this.usedStorage + toStore <= this.storageSize && this.usedStorage + toStore >= 0)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	private boolean setStorageSize(int toStore)
+	{
+		if(canStore(toStore))
+		{
+			usedStorage += toStore;
+			return true;
+		}	
+		
+		return false;
+	}
+	
+	
+	public int getUsedStorageSize()
+	{
+		return this.usedStorage;
+	}
+	
+	
+	public boolean addStorage(Product product)
+	{
+		if(setStorageSize(product.size))
+		{
+			storage.add(product);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	public boolean removeFromStorage(String name)
+	{
+		for(Product product : storage)
+		{
+			if(product.name == name)
+			{
+				if(setStorageSize(-product.size))
+				{
+					storage.remove(product);
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	public void ageStorage()
+	{
+		for(int i = 0; i<storage.size(); i++)
+		{
+			storage.get(i).expiresDays -= 1;
+			
+			if(storage.get(i).expiresDays == 0)
+			{
+				setStorageSize(-storage.get(i).size);
+				storage.remove(storage.get(i));
+				i--;
+			}
+		}
+	}
 }
