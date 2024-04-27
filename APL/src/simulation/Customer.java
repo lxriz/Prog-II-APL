@@ -15,7 +15,7 @@ public class Customer
 	
 	public Customer(int weather)
 	{
-		this.age = r.nextInt(18, 101);
+		this.age = r.nextInt(18, 81);
 		
 		switch(weather)
 		{
@@ -58,12 +58,12 @@ public class Customer
 	
 	private double priceAcceptance(double x)
 	{
-		return -0.001 * x + 1.172;
+		return -0.000210084*x*x + 0.0205882353*x + 0.7474789916;
 	}
+	
 	
 	public boolean willBuy(double marketPrice, double kioskPrice)
 	{
-		
 		double willingToPay = marketPrice * priceAcceptance(this.age);
 				
 		if(willingToPay >= kioskPrice)

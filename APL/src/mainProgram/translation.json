@@ -341,6 +341,30 @@
 	"ENG": "This would exceed your storage capacity!"
   }, 
   
+   "SIMULATION_START_DAY_CUSTOMER_RESPONSE_SOLD_OUT":
+  {
+  	"DE": "Ausverkauft!",
+	"ENG": "Sold out!"
+  }, 
+  
+   "SIMULATION_START_DAY_CUSTOMER_RESPONSE_TOO_EXPENSIVE":
+  {
+  	"DE": "Das ist zu teuer!",
+	"ENG": "This is too expensive!"
+  }, 
+  
+   "SIMULATION_START_DAY_CUSTOMER_RESPONSE_BOUGHT":
+  {
+  	"DE": "Gekauft!",
+	"ENG": "Sold!"
+  }, 
+  
+  "SIMULATION_START_DAY_CUSTOMER":
+  {
+  	"DE": "Kunde",
+	"ENG": "Customer"
+  }, 
+  
   "DAY_1":
   {
   	"DE": "Montag",

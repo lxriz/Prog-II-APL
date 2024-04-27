@@ -16,6 +16,7 @@ public class Main
 	private static Translation translation = new Translation();
 	
 	
+	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Utility methods
 	
@@ -188,6 +189,82 @@ public class Main
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Simulation
+	
+	private static String PrintStartDayMenuHelper(int response)
+	{
+		switch(response)
+		{
+			case 0:
+				return translation.getText("SIMULATION_START_DAY_CUSTOMER_RESPONSE_SOLD_OUT");
+
+			case 1:
+				return translation.getText("SIMULATION_START_DAY_CUSTOMER_RESPONSE_TOO_EXPENSIVE");
+
+			case 2:
+				return translation.getText("SIMULATION_START_DAY_CUSTOMER_RESPONSE_BOUGHT");		
+		}
+		
+		return "";
+	}
+	
+	
+	private static void PrintStartDayMenu(Simulation simulation, int[] response)
+	{
+		PrintClearConsole();
+		PrintSimulationHeader(simulation);
+		
+		switch(response[1])
+		{
+			case 1:
+				System.out.println(" " + translation.getText("SIMULATION_START_DAY_CUSTOMER") + "[" + response[0] + "] - " + translation.getText("PRODUCT_NAME_CIGARETTES") + ": " + PrintStartDayMenuHelper(response[2]));
+				break;
+				
+			case 2:
+				System.out.println(" " + translation.getText("SIMULATION_START_DAY_CUSTOMER") + "[" + response[0] + "] - " + translation.getText("PRODUCT_NAME_FRIES") + ": " + PrintStartDayMenuHelper(response[2]));
+				break;
+				
+			case 3:
+				System.out.println(" " + translation.getText("SIMULATION_START_DAY_CUSTOMER") + "[" + response[0] + "] - " + translation.getText("PRODUCT_NAME_GUM") + ": " + PrintStartDayMenuHelper(response[2]));
+				break;
+				
+			case 4:
+				System.out.println(" " + translation.getText("SIMULATION_START_DAY_CUSTOMER") + "[" + response[0] + "] - " + translation.getText("PRODUCT_NAME_ICE_CREAM") + ": " + PrintStartDayMenuHelper(response[2]));
+				break;
+				
+			case 5:
+				System.out.println(" " + translation.getText("SIMULATION_START_DAY_CUSTOMER") + "[" + response[0] + "] - " + translation.getText("PRODUCT_NAME_LEMONADE") + ": " + PrintStartDayMenuHelper(response[2]));
+				break;
+				
+			case 6:
+				System.out.println(" " + translation.getText("SIMULATION_START_DAY_CUSTOMER") + "[" + response[0] + "] - " + translation.getText("PRODUCT_NAME_NEWSPAPER") + ": " + PrintStartDayMenuHelper(response[2]));
+				break;
+		}
+		
+		PrintLine();
+	}
+	
+	
+	private static void StartDayMenu(Simulation simulation)
+	{			
+			for(int i = 0; i < simulation.day.countCustomers; i++)
+			{
+				PrintStartDayMenu(simulation, simulation.day.nextCustomer());
+			
+			
+				try
+				{
+					Thread.sleep(800);
+				}
+				catch(Exception e)
+				{
+					
+				}
+			
+			}
+		
+		
+		simulation.nextDay();
+	}
 	
 	
 	private static void PrintExitVerifyMenu()
@@ -965,7 +1042,7 @@ public class Main
 					}
 					break;
 				case 1:
-					simulation.nextDay();
+					StartDayMenu(simulation);
 					break;
 				case 2:
 					SimulationPricesMenu(simulation);
