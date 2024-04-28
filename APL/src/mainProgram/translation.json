@@ -365,6 +365,43 @@
 	"ENG": "Customer"
   }, 
   
+  "SIMULATION_END_GAME_GAME_OVER":
+  {
+  	"DE": "Spielende",
+	"ENG": "Game Over"
+  }, 
+  
+  "SIMULATION_END_GAME_PROFIT":
+  {
+  	"DE": "Gewinn",
+	"ENG": "Profit"
+  }, 
+  
+  "SIMULATION_END_GAME_PROFIT_PER_DAY":
+  {
+  	"DE": "Gewinn pro Tag",
+	"ENG": "Profit per day"
+  }, 
+  
+  "SIMULATION_END_GAME_SAVE_HIGHSCORE":
+  {
+  	"DE": "Punktestand speichern?",
+	"ENG": "Save score?"
+  }, 
+  
+  "SIMULATION_END_GAME_SAVE_HIGHSCORE_YES":
+  {
+  	"DE": "Ja",
+	"ENG": "Yes"
+  }, 
+  
+  "SIMULATION_END_GAME_SAVE_HIGHSCORE_NO":
+  {
+  	"DE": "Nein",
+	"ENG": "No"
+  }, 
+  
+  
   "DAY_1":
   {
   	"DE": "Montag",

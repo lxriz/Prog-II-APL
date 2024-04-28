@@ -15,6 +15,9 @@ public class Kiosk
 	public final int storageSize;
 	public List<Product> storage;
 	
+	public final double startCash = 30;
+
+	
 	private double[] prices = new double[6];
 	
 	
@@ -22,7 +25,7 @@ public class Kiosk
 	public Kiosk(String ownerName)
 	{
 		this.ownerName = ownerName;		
-		this.cash = 30.00;
+		this.cash = startCash;
 		this.usedStorage = 0;
 		this.storageSize = 100;
 		this.storage = new ArrayList<>();		

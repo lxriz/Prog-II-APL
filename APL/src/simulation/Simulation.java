@@ -14,6 +14,7 @@ public class Simulation
 		public final int weather;
 		public Market market;
 		
+		
 		public final int countCustomers;
 		
 		private static Random r = new Random();
@@ -23,7 +24,7 @@ public class Simulation
 		{
 			this.weather = (int)(r.nextInt(3));
 			market = new Market(this.weather);
-			countCustomers = r.nextInt(20, 51);
+			countCustomers = r.nextInt(15, (int)(35+35*0.15*weather));
 		}
 		
 		
@@ -139,7 +140,7 @@ public class Simulation
 		this.day = new Day();
 		
 		this.currentDay = 1;
-		this.maxDays = 21;
+		this.maxDays = 1;
 	}
 	
 	
@@ -150,9 +151,9 @@ public class Simulation
 
 	
 	
-	public boolean endDays()
+	public boolean checkEndGame()
 	{
-		if(this.maxDays == this.currentDay)
+		if(this.maxDays+1 == this.currentDay)
 		{
 			return true;
 		}

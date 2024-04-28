@@ -11,7 +11,7 @@ public class Gum extends Product
 		
 		this.basePrice = 0.40;
 		this.basePriceVariation = 0.25;
-		this.priceWeather = new double[]{0.2, 0, -0.2};
+		this.priceWeather = new double[]{0, 0, 0};
 	}
 	
 	

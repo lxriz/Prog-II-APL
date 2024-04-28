@@ -190,6 +190,63 @@ public class Main
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Simulation
 	
+	
+	private static void PrintEndGameMenu(Simulation simulation)
+	{
+		PrintClearConsole();
+		PrintLine();
+		System.out.println();
+		System.out.println(" " + translation.getText("SIMULATION_END_GAME_GAME_OVER"));
+		System.out.println();
+		PrintLine();
+		System.out.println("  " + translation.getText("SIMULATION_END_GAME_PROFIT") + ": " + formateDouble((simulation.kiosk.getCash()-simulation.kiosk.startCash)) + "€");
+		PrintLineDotted();
+		System.out.println("  " + translation.getText("SIMULATION_END_GAME_PROFIT_PER_DAY") + ": " + formateDouble((simulation.kiosk.getCash()-simulation.kiosk.startCash)/((double)simulation.maxDays)) + "€");
+		PrintLine();
+		System.out.println();
+		System.out.println("  " + translation.getText("SIMULATION_END_GAME_SAVE_HIGHSCORE"));
+		PrintLine();
+		System.out.println(" 1| " + translation.getText("SIMULATION_END_GAME_SAVE_HIGHSCORE_YES"));
+		System.out.println(" 2| " + translation.getText("SIMULATION_END_GAME_SAVE_HIGHSCORE_NO"));
+		
+		PrintInput();
+	}
+	
+	
+	private static void EndGameMenu(Simulation simulation)
+	{
+		boolean running = true;
+		while(running)
+		{
+			PrintEndGameMenu(simulation);
+			
+			int input = -1;
+			try
+			{
+				input = scan.nextInt();
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+			}
+			
+			
+			switch(input)
+			{	
+				case 1:
+					// HIER KOMMT NOCH SAVE METHODE REIN !!!
+					break;
+				case 2:
+					running = false;
+					break;
+				default:
+					PrintInvalidInput();
+					break;
+			}
+		}
+	}
+	
+	
 	private static String PrintStartDayMenuHelper(int response)
 	{
 		switch(response)
@@ -259,7 +316,6 @@ public class Main
 				{
 					
 				}
-			
 			}
 		
 		
@@ -1043,6 +1099,11 @@ public class Main
 					break;
 				case 1:
 					StartDayMenu(simulation);
+					if(simulation.checkEndGame())
+					{
+						running = false;
+						EndGameMenu(simulation);
+					}
 					break;
 				case 2:
 					SimulationPricesMenu(simulation);
