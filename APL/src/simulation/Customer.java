@@ -18,14 +18,21 @@ public class Customer
 		this.age = r.nextInt(18, 81);
 		
 		switch(weather)
-		{
+		{	
+			// 0 - Cigarettes
+			// 1 - Fries
+			// 2 - Gum
+			// 3 - IceCream
+			// 4 - Lemonade
+			// 5 - Newspaper
+			// Sum = 1
 			case 0:		
 				// Rainy
-				demand = new double[]{0.13, 0.20, 0.16, 0.10, 0.12, 0.20};
+				demand = new double[]{0.19, 0.20, 0.14, 0.07, 0.12, 0.18};
 				break;
 			case 1:	
 				// Cloudy
-				demand = new double[]{0.11, 0.18, 0.16, 0.14, 0.12, 0.20};
+				demand = new double[]{0.15, 0.18, 0.16, 0.14, 0.12, 0.20};
 				break;
 			case 2:	
 				// Sunny

@@ -140,7 +140,7 @@ public class Simulation
 		this.day = new Day();
 		
 		this.currentDay = 1;
-		this.maxDays = 1;
+		this.maxDays = 21;
 	}
 	
 	
@@ -154,6 +154,10 @@ public class Simulation
 	public boolean checkEndGame()
 	{
 		if(this.maxDays+1 == this.currentDay)
+		{
+			return true;
+		}
+		if(kiosk.getCash() == 0 && kiosk.getUsedStorageSize() == 0)
 		{
 			return true;
 		}
